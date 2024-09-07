@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BuildingModel : Entity
+public abstract class BuildingModel : Entity
 {
     [SerializeField] protected int[] CellsXY = new int[2];
 }

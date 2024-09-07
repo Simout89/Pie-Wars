@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ResourcesLoad : MonoBehaviour
 {
-    private List<GameObject> _gameObjects = new List<GameObject>();
+    private List<GameObject> _gameObjects = new();
     
     private void Awake()
     {

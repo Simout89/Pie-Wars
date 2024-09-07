@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class UnitControl : MonoBehaviour
 {
-    private List<UnitModel> _selectedUnits = new List<UnitModel>();
+    private List<UnitModel> _selectedUnits = new();
 
     public void ClickOnUnit(UnitModel unitModel)
     {
@@ -22,6 +23,10 @@ public class UnitControl : MonoBehaviour
     
     public void ClickRMB(Vector3 coordinates, GameObject gameObject)
     {
+        foreach (var unit in _selectedUnits)
+        {
+            unit.GoTo(coordinates);
+        }
         Debug.Log("Нажато rmb: ");
     }
 }
