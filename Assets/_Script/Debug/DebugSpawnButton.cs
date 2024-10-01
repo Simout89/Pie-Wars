@@ -1,11 +1,14 @@
-using System;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-[RequireComponent(typeof(Button))]
-public class CreateBuildButton : MonoBehaviour
+public class DebugSpawnButton: MonoBehaviour
 {
+    [SerializeField] private TMP_InputField _objectID;
+    [SerializeField] private TMP_InputField _teamID;
+    
     [Inject] private CellsManager _cellsManager;
     [Inject] private ResourcesLoad _resourcesLoad;
     
@@ -19,6 +22,6 @@ public class CreateBuildButton : MonoBehaviour
 
     private void HandleOnClick()
     {
-        _cellsManager.SpawnEntity(_resourcesLoad.GetPrefabById(0), 0);
+        _cellsManager.SpawnEntity(_resourcesLoad.GetPrefabById(Convert.ToInt32(_objectID.text)), Convert.ToInt32(_teamID.text));
     }
 }

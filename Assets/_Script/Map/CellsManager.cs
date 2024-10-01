@@ -7,12 +7,17 @@ public class CellsManager : MonoBehaviour
 
     private List<Entity> _entities = new();
     
-    public void SpawnEntity(GameObject entity)
+    public void SpawnEntity(GameObject entity, int teamId)
     {
-        GameObject emergedEntity = Instantiate(entity, new Vector3(startpos.x + Random.Range(0,5), startpos.y, startpos.z + Random.Range(0,5)), Quaternion.identity);
-        _entities.Add(emergedEntity.GetComponent<Entity>());
+        GameObject emergedGameObject = Instantiate(entity, new Vector3(startpos.x + Random.Range(0,5), startpos.y, startpos.z + Random.Range(0,5)), Quaternion.identity);
+        Entity emergedEntity = emergedGameObject.GetComponent<Entity>();
+        emergedEntity.TeamId = teamId;
+        _entities.Add(emergedEntity);
         ////
-        emergedEntity.GetComponent<Entity>().PlaySoundOnSpawn();
+        emergedGameObject.GetComponent<Renderer>().material.color = Color.HSVToRGB((float)teamId/10, 1, 1);
+        ////
+        emergedEntity.PlaySoundOnSpawn();
+        
     }
     
 }

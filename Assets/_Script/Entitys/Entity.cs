@@ -1,11 +1,13 @@
 using System;
+using System.Text;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 public abstract class Entity : MonoBehaviour
 {
     [SerializeField] protected float Health;
-    [SerializeField] protected int TeamId;
+    protected float MaxHealth;
+    [HideInInspector] public int TeamId;
     
     [SerializeField] protected AudioClip[] Sounds;
     protected AudioSource audioSource;
@@ -13,6 +15,7 @@ public abstract class Entity : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        MaxHealth = Health;
     }
     
     public void PlaySoundOnSpawn()
