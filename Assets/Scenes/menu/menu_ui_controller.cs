@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using NUnit.Framework;
 
 public class menu_ui_controller : MonoBehaviour
 {
-    Animator ui_trigger;
+    public GameObject TargetObj;
+    private Animator ui_trigger;
     public int a = 9;
 
 
@@ -25,14 +27,17 @@ public class menu_ui_controller : MonoBehaviour
         {
             Application.Quit();
         }
-        else if(choise > 5) 
+        else if (choise > 5)
         {
             ui_trigger.SetTrigger("Trigger");
         }
         else
         {
-            ui_trigger.SetTrigger("Trigger");
-            ui_trigger.SetInteger("choose", choise);
+            if (choise == 0)
+            {
+                ui_trigger.SetTrigger("Trigger");
+                ui_trigger.SetInteger("choose", choise);
+            }
         }
     }
 }
