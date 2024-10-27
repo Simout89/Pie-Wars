@@ -10,7 +10,7 @@ public class Hex : MonoBehaviour
 
     public HexCell cellPrefab;
 
-    HexCell[] cells;
+    public HexCell[] cells;
 
 
     void Update()

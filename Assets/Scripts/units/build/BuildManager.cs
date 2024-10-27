@@ -9,8 +9,7 @@ using UnityEngine;
 public class BuildManager : MonoBehaviour
 {
 
-
-    List<Build> Data = new List<Build>(); //массив всех зданий
+    public List<Build> Data = new List<Build>(); //массив всех зданий
     void Start()
     {
         
@@ -20,6 +19,13 @@ public class BuildManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void AddBuild(int BuildId, Vector3 position) //добовляет здание в массив
+    {
+        Hex HexMesh = GetComponent<Hex>();
+
+
     }
 
 

@@ -1,7 +1,11 @@
 using UnityEngine;
+using System;
+
 
 public class Build : MonoBehaviour //базовый класс
 {
+
+    
 
     int FractionId;  //id фракции
     int Level; //уровень здания
@@ -22,4 +26,18 @@ public class Build : MonoBehaviour //базовый класс
     {
         
     }
+
+    void AddBuild(Vector3 position,  Hex HexMesh) //создает здание
+    {
+
+        position = transform.InverseTransformPoint(position);
+        HexCoordinates coordinates = HexCoordinates.FromPosition(position);
+        Debug.Log("touched at " + coordinates.ToString());
+        int CellId = coordinates.X + coordinates.Z * HexMesh.width + coordinates.Z / 2; //высота берятся из объекта сетки, в дальнейшем будут браться из файла сохранения карты
+
+        Vector3 Center = HexMesh.cells[CellId].transform.position;
+
+    }
+
+
 }
