@@ -5,7 +5,7 @@ public enum HexDirection
 {
      NE, E, SE, SW, W, NW
 }
-public static class HexDirectionExtensions   //получение противоположной клитки
+public static class HexDirectionExtensions   //получение противоположной клетки
 {
 
     public static HexDirection Opposite(this HexDirection direction)
