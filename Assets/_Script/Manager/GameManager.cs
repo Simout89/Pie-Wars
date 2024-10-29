@@ -22,5 +22,15 @@ namespace _Script.Manager
         {
             Console.WriteLine(gameObject);
         }
+
+        private void GameWin()
+        {
+            // что то еще
+        }
+
+        private void GameLose()
+        {
+            // что то еще
+        }
     }
 }
