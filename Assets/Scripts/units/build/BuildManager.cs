@@ -5,11 +5,17 @@ using UnityEngine;
 
 //отвечает за создание новых зданий
 //хранит массив всех зданий
-//обнавляет каждое здание
+//отвечает за уничтожение всех зданий
+//отвечает за улучшения всех зданий
 public class BuildManager : MonoBehaviour
 {
 
-    public List<Build> Data = new List<Build>(); //массив всех зданий
+    public MineBuild Mine;
+    
+ 
+
+
+    public List<Build> Builds = new List<Build>(); //массив всех зданий
     void Start()
     {
         
@@ -21,9 +27,15 @@ public class BuildManager : MonoBehaviour
         
     }
 
-    void AddBuild(int BuildId, Vector3 position) //добовляет здание в массив
+    void AddBuild(int Type, Vector3 position) //добовляет здание в массив и на карту
     {
+        
         Hex HexMesh = GetComponent<Hex>();
+
+        position = transform.InverseTransformPoint(position);
+        HexCoordinates coordinates = HexCoordinates.FromPosition(position);
+        int CellId = coordinates.X + coordinates.Z * HexMesh.width + coordinates.Z / 2; //id кдетки на которой будет здание
+        Vector3 Center = HexMesh.cells[CellId].transform.position;//центр клетки на корой будет здание
 
 
     }
