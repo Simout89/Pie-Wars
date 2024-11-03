@@ -29,9 +29,5 @@ public class Build : MonoBehaviour //базовый класс
         
     }
 
-    
-
-
-
 
 }
