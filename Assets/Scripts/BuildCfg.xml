@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+	<FRACTION_PASTRY> 
+		
+	</FRACTION_PASTRY>
+
+	<FRACTION_ICE>
+		
+	</FRACTION_ICE>
+
+	<FRACTION_CHOCOLATE>
+		
+	</FRACTION_CHOCOLATE>
+
+	<FRACTION_SUGAR>
+		<MAIN_BUILD_SUGAR>
+			<HP>100</HP>
+			<AR>1150</AR>
+			<EN>0</EN>
+			<SP>0</SP>
+			<VR>4</VR>
+			<AT>0</AT>
+		</MAIN_BUILD_SUGAR>
+
+		<AIRFIELD_SUGAR>
+			<HP>600</HP>
+			<AR>0</AR>
+			<EN>0</EN>
+			<SP>0</SP>
+			<VR>3</VR>
+			<AT>0</AT>
+		</AIRFIELD_SUGAR>
+
+		<WORKSHOP_SUGAR>
+			<HP>20</HP>
+			<AR>980</AR>
+			<EN>0</EN>
+			<SP>0</SP>
+			<VR>3</VR>
+			<AT>0</AT>
+		</WORKSHOP_SUGAR>
+
+		<CASERN_SUGAR>
+			<HP>10</HP>
+			<AR>340</AR>
+			<EN>0</EN>
+			<SP>0</SP>
+			<VR>2</VR>
+			<AT>0</AT>
+		</CASERN_SUGAR>
+
+		<MINE_SUGAR>
+			<HP>50</HP>
+			<AR>150</AR>
+			<EN>0</EN>
+			<SP>0</SP>
+			<VR>2</VR>
+			<AT>0</AT>
+		</MINE_SUGAR>
+
+		<BARRACKS_SUGAR>
+			<HP>100</HP>
+			<AR>300</AR>
+			<EN>0</EN>
+			<SP>0</SP>
+			<VR>2</VR>
+			<AT>0</AT>
+		</BARRACKS_SUGAR>
+
+		<PATROL_SUGAR>
+			<HP>80</HP>
+			<AR>10</AR>
+			<EN>0</EN>
+			<SP>0</SP>
+			<VR>10</VR>
+			<AT>0</AT>
+		</PATROL_SUGAR>
+
+		<FORT_SUGAR>
+			<HP>10</HP>
+			<AR>440</AR>
+			<EN>0</EN>
+			<SP>0</SP>
+			<VR>7</VR>
+			<AT>30</AT>
+		</FORT_SUGAR>
+	</FRACTION_SUGAR>
+</configuration>

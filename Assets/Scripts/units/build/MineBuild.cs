@@ -1,13 +1,13 @@
 using UnityEngine;
 
+using System.Xml;
+
 public class MineBuild : Build
 {
 
-    public MineBuild(int FracId) {
-        FractionId = FracId;
-
-    
-    
+    public MineBuild(int FracId, XmlDocument Cfg) {
+        FractionId = FracId; 
+       
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

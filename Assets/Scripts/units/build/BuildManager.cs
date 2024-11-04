@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using System.Xml;
 
+using System.Configuration;
+using System.Collections.Specialized;
 
 //отвечает за создание новых зданий
 //хранит массив всех зданий
@@ -11,11 +14,29 @@ public class BuildManager : MonoBehaviour
 {
 
     public MineBuild Mine;
-    
- 
+    string CfgBuildPath = "C:\\Users\\Роман\\Desktop\\Pie-Wars\\Assets\\Scripts\\BuildCfg.xml";
+    XmlDocument MainBuildCfg = new XmlDocument(); //конфик полностью
 
+    protected XmlNode PastryBuildCfg;//узел с конфигом зданий фракции тесто
+    protected XmlNode IceBuildCfg;//узел с конфигом зданий фракции мороженное
+    protected XmlNode ChocolateBuildCfg;//узел с конфигом зданий фракции шоколад
+    protected XmlNode SugarBuildCfg;//узел с конфигом зданий фракции сахар
+    protected XmlElement cfgRoot;
 
     public List<Build> Builds = new List<Build>(); //массив всех зданий
+
+
+    public BuildManager() {
+        MainBuildCfg.Load(CfgBuildPath);
+        cfgRoot = MainBuildCfg.DocumentElement; //корневой элемент
+
+        //PastryBuildCfg = cfgRoot.ChildNodes[0]; //настройки для зданий теста
+        //IceBuildCfg = cfgRoot.ChildNodes[1]; //настройки для зданий мороженного
+        //ChocolateBuildCfg = cfgRoot.ChildNodes[2]; //настройки для зданий шоколада
+        //SugarBuildCfg = cfgRoot.ChildNodes[3]; //настройки для зданий сахара
+
+    }
+
     void Start()
     {
         

@@ -11,6 +11,14 @@ public class Build : MonoBehaviour //базовый класс
     protected int Level; //уровень здания
     protected int Status; //состояние постройки(работает, не работает и улутшается)
     protected int Hp; //текущее кол-во прочности здания
+    protected int Ar; //броня
+    protected int En; //энергия
+    protected int Sp; //скорость
+    protected int Vr; //обзор
+    protected int At; //атака
+
+
+
     protected int MaxHp; //максимальное кол-во хп
     protected int Type; //тип здания
      
