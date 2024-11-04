@@ -5,6 +5,8 @@ using System.Xml;
 
 using System.Configuration;
 using System.Collections.Specialized;
+using System.Reflection.Emit;
+using UnityEngine.UIElements;
 
 //отвечает за создание новых зданий
 //хранит массив всех зданий
@@ -22,7 +24,13 @@ public class BuildManager : MonoBehaviour
     protected XmlNode SugarBuildCfg;//узел с конфигом зданий фракции сахар
     protected XmlElement cfgRoot;
 
-    public List<Build> Builds = new List<Build>(); //массив всех зданий
+    public List<Build> BuildList = new List<Build>(); //массив всех зданий
+
+   
+    public MineBuild MinePrefab;
+
+
+
 
 
     public BuildManager() {
@@ -38,7 +46,8 @@ public class BuildManager : MonoBehaviour
 
     void Start()
     {
-        
+        Vector3 position = new Vector3(17f,0f,14f);
+        AddBuild(Constants.BUILD_MINE, position);
     }
 
     // Update is called once per frame
@@ -47,15 +56,37 @@ public class BuildManager : MonoBehaviour
         
     }
 
-    void AddBuild(int Type, Vector3 position) //добовляет здание в массив и на карту
+    public void AddBuild(int TypeBuild, Vector3 position) //добовляет здание в массив и на карту
     {
-        
+
+        //position = transform.InverseTransformPoint(position);
+        //HexCoordinates coordinates = HexCoordinates.FromPosition(position);
+        //Debug.Log("touched at " + coordinates.ToString());
+        //int index = coordinates.X + coordinates.Z * width + coordinates.Z / 2;  
+
         Hex HexMesh = GetComponent<Hex>();
 
         position = transform.InverseTransformPoint(position);
         HexCoordinates coordinates = HexCoordinates.FromPosition(position);
         int CellId = coordinates.X + coordinates.Z * HexMesh.width + coordinates.Z / 2; //id кдетки на которой будет здание
-        Vector3 Center = HexMesh.cells[CellId].transform.position;//центр клетки на корой будет здание
+        Vector3 t = new Vector3(0f, 0.5f, 0f);
+        Vector3 Center = HexMesh.cells[CellId].transform.position*2f - t;//центр клетки на корой будет здание
+        Debug.Log(Center);
+        Debug.Log(CellId);
+
+        switch (TypeBuild)
+        {
+            case Constants.BUILD_MINE:
+                //HexCell cell = cells[i] = Instantiate<HexCell>(cellPrefab);
+                //cell.transform.localPosition = position;
+                Build bld = Instantiate<MineBuild>(MinePrefab);
+                bld.transform.localPosition = Center;
+                BuildList.Add(bld);
+                break;
+
+
+
+        }
 
 
     }

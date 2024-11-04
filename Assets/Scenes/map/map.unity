@@ -179,8 +179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b77d1a94b4337644eb003d2060587234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mine: {fileID: 1822156648}
-  Builds: []
+  BuildList: []
+  MinePrefab: {fileID: 1822156648}
 --- !u!1 &1819512382
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +465,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 349659348669398293, guid: 3ad03b67c03d2904784433256d84a4f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.37
+      value: -29.69
       objectReference: {fileID: 0}
     - target: {fileID: 349659348669398293, guid: 3ad03b67c03d2904784433256d84a4f0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -507,7 +507,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainBuild
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6718203017567523890, guid: 3ad03b67c03d2904784433256d84a4f0, type: 3}
+    - {fileID: 526094951166410534, guid: 3ad03b67c03d2904784433256d84a4f0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
