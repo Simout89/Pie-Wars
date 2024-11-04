@@ -13,7 +13,6 @@ using System.Collections.Specialized;
 public class BuildManager : MonoBehaviour
 {
 
-    public MineBuild Mine;
     string CfgBuildPath = "C:\\Users\\Роман\\Desktop\\Pie-Wars\\Assets\\Scripts\\BuildCfg.xml";
     XmlDocument MainBuildCfg = new XmlDocument(); //конфик полностью
 
@@ -30,10 +29,10 @@ public class BuildManager : MonoBehaviour
         MainBuildCfg.Load(CfgBuildPath);
         cfgRoot = MainBuildCfg.DocumentElement; //корневой элемент
 
-        //PastryBuildCfg = cfgRoot.ChildNodes[0]; //настройки для зданий теста
-        //IceBuildCfg = cfgRoot.ChildNodes[1]; //настройки для зданий мороженного
-        //ChocolateBuildCfg = cfgRoot.ChildNodes[2]; //настройки для зданий шоколада
-        //SugarBuildCfg = cfgRoot.ChildNodes[3]; //настройки для зданий сахара
+        PastryBuildCfg = cfgRoot.ChildNodes[0]; //настройки для зданий теста
+        IceBuildCfg = cfgRoot.ChildNodes[1]; //настройки для зданий мороженного
+        ChocolateBuildCfg = cfgRoot.ChildNodes[2]; //настройки для зданий шоколада
+        SugarBuildCfg = cfgRoot.ChildNodes[3]; //настройки для зданий сахара
 
     }
 

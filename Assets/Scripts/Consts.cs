@@ -14,4 +14,12 @@ static class Constants
     public const int BUILD_WORK_ACTIVELY = 3;//гдюмхе врн-рн бшосяйюер
     public const int BUILD_SHORTAGE = 4;//меубюрйю пеяспянб
     //ЙНМЯРЮМРШ УО ГДЮМХИ Б ЙНМТХЦЕ
+    //РХОШ ГДЮМХИ
+    public const int BUILD_UNIT = 0; //гдюмхе бшосяйюер нашвмшу чмхрнб
+    public const int BUILD_TECHNIQUE_UNIT = 1; //гдюмхе бшосяйюер реумхйс
+    public const int BUILDE_SPECIAL_UNIT = 0; //гдюмхе бшосяйюер нянашу чмхрнб
+    public const int BUILD_MINE = 3; //гдюмхе ьюурш
+    public const int BUILD_BARRACKS = 4; //гдюмхе аюпюйю
+    public const int BUILD_PATROL = 5; //гдюмхе днгнпмнцн осмйрю
+    
 }
