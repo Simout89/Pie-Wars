@@ -19,6 +19,6 @@ public class to_menu : MonoBehaviour
     }
     public void from_menu_to_other(int choise)
     {
-        _actionTarget.animation_controller(choise);
+        // _actionTarget.animation_controller(choise);
     }
 }
