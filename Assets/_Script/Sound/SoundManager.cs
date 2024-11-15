@@ -18,4 +18,7 @@ public enum SoundType
 {
     Music,
     Effect,
+    Entity,
+    Alarms,
+    Voices
 }
