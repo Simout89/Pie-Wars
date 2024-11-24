@@ -16,6 +16,7 @@ public class MineBuild : Build
         At = Convert.ToInt32(CfgRoot.ChildNodes[FracId - 1].ChildNodes[5].InnerText);
         MaxHp = Hp;
         Type = Constants.BUILD_MINE;
+        
 
 
     }

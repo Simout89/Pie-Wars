@@ -68,7 +68,4 @@ public struct HexCoordinates
 
         return new HexCoordinates(iX, iZ);
     }
-
-
-
 }
