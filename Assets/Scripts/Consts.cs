@@ -21,5 +21,11 @@ static class Constants
     public const int BUILD_MINE = 3; //ЗДАНИЕ ШАХТЫ
     public const int BUILD_BARRACKS = 4; //ЗДАНИЕ БАРАКА
     public const int BUILD_PATROL = 5; //ЗДАНИЕ ДОЗОРНОГО ПУНКТА
-    
+
+    //константы юнитов
+
+
+    //всякие разные Коэффициент
+    public const float BLOCK_COEF = 0.1f; //коэффиценты блока урона 1 ед брони,проценты
+
 }

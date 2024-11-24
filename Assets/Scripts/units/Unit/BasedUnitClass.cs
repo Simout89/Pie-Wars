@@ -3,7 +3,7 @@ using UnityEngine;
 public class BasedUnitClass : MonoBehaviour
 {
 
-    protected struct Characteristics {
+    protected struct Characteristics {          //характеристики юнита
 
         private int HP;
         private int AR;
@@ -22,18 +22,36 @@ public class BasedUnitClass : MonoBehaviour
             this.AT = at;
         }
 
-        public int[] get() {
+        public int[] get() {            //возвращает текущие характеристики юнита
             return new int[] {this.HP, this.AR, this.EN, this.SP, this.VR, this.AT};
         }
 
-        public void Damage(int dmg) {
+        public void Damage(int dmg) {           //для всех, кроме фракции сахара /1 броня блокирует n% урона
+            dmg = (int)(dmg * 0.1 * this.AR);
             this.HP -= dmg;
         }
+        public void DamageSugar(int dmg)  //урон для сахара
+        {
+            if (dmg <= this.AR)
+            {
+                this.AR -= dmg;
+            }
+            else
+            {
+                dmg -= this.AR;
+                this.AR = 0;
+                this.HP -= dmg;
+            }
+        }
+
         public void Change_EN(int en) {
             this.EN -= en;
         }
-
     }
+
+    protected int FractionId;
+    protected int Level;
+    protected int Statis;
 
 
 
