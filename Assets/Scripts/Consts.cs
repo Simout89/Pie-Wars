@@ -22,8 +22,11 @@ static class Constants
     public const int BUILD_BARRACKS = 4; //ЗДАНИЕ БАРАКА
     public const int BUILD_PATROL = 5; //ЗДАНИЕ ДОЗОРНОГО ПУНКТА
 
-    //константы юнитов
+    //id юнитов
 
+
+    //константы для юнитов
+    public const int EN_REGEN = 1; //реген энергии в 1 секунду
 
     //всякие разные Коэффициент
     public const float BLOCK_COEF = 0.1f; //коэффиценты блока урона 1 ед брони,проценты

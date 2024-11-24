@@ -44,7 +44,11 @@ public class BasedUnitClass : MonoBehaviour
             }
         }
 
-        public void Change_EN(int en) {
+        public void EnRegen() {         //реген энергии
+            this.EN += Constants.EN_REGEN;
+        }
+
+        public void Change_EN(int en) { //расход энергии
             this.EN -= en;
         }
     }
