@@ -30,6 +30,11 @@ public class Build : MonoBehaviour //базовый класс
         Status = Constants.BUILD_WORK_PASSIVE;
     }
 
+    public void DamageSugar(int dmg) {
+        dmg = (int)(dmg * 0.1 * Ar);
+        Hp -= dmg;
+    }
+
 
     // Update is called once per frame
     void Update()
