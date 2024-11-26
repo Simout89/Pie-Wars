@@ -16,7 +16,7 @@ public class MineBuild : BasedUnitClass
         int Sp = Convert.ToInt32(CfgRoot.ChildNodes[FracId - 1].ChildNodes[3].InnerText);
         int Vr = Convert.ToInt32(CfgRoot.ChildNodes[FracId - 1].ChildNodes[4].InnerText);
         int At = Convert.ToInt32(CfgRoot.ChildNodes[FracId - 1].ChildNodes[5].InnerText);
-        int MaxHp = Hp;
+
         ObjType = Constants.BUILD_MINE;
 
         Char = new(Hp,Ar,En,Sp,Vr,At);
