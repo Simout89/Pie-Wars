@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class BasedUnitClass : MonoBehaviour
 {
+
     protected struct Characteristics
     {          //характеристики юнита
 
@@ -11,7 +12,6 @@ public class BasedUnitClass : MonoBehaviour
         private int SP;
         private int VR;
         private int AT;
-        private int MaxHp;
 
         public Characteristics(int hp, int ar, int en, int sp, int vr, int at)
         {
@@ -21,7 +21,6 @@ public class BasedUnitClass : MonoBehaviour
             this.SP = sp;
             this.VR = vr;
             this.AT = at;
-            this.MaxHp = hp;
         }
 
         public int[] get()
@@ -47,10 +46,12 @@ public class BasedUnitClass : MonoBehaviour
                 this.HP -= dmg;
             }
         }
+
         public void EnRegen()
         {         //реген энергии
             this.EN += Constants.EN_REGEN;
         }
+
         public void Change_EN(int en)
         { //расход энергии
             this.EN -= en;
@@ -60,7 +61,7 @@ public class BasedUnitClass : MonoBehaviour
     protected int FractionId;
     protected int Level;
     protected int Statis;
-    protected int ObjType; //тип юнита/здания
+    protected int ObjType; //id юнита или здания
     protected Characteristics Char;
 
 
