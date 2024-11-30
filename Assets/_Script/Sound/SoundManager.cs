@@ -5,7 +5,7 @@ public class SoundManager : MonoBehaviour
 {
     public event Action<float, SoundType> volumeChanged;
     
-    private SoundType soundType;
+    [SerializeField] private SoundType soundType;
     
 
     public void sliderChangeValue(float volume)

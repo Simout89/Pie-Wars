@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -15,6 +16,11 @@ public class AudioSourceController : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
         _soundManager.volumeChanged += HandleVolumeChanged;
+    }
+
+    private void OnDisable()
+    {
+        _soundManager.volumeChanged -= HandleVolumeChanged;
     }
 
     private void HandleVolumeChanged(float volume, SoundType soundType)
