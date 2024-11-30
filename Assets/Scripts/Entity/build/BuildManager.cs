@@ -24,7 +24,7 @@ public class BuildManager : MonoBehaviour
     protected XmlNode SugarBuildCfg;//узел с конфигом зданий фракции сахар
     protected XmlElement cfgRoot;
 
-    public List<BasedUnitClass> BuildList = new List<BasedUnitClass>(); //массив всех зданий
+    public List<BasedEntityClass> BuildList = new List<BasedEntityClass>(); //массив всех зданий
 
    
     public MineBuild MinePrefab;
@@ -79,7 +79,7 @@ public class BuildManager : MonoBehaviour
             case Constants.BUILD_MINE:
                 //HexCell cell = cells[i] = Instantiate<HexCell>(cellPrefab);
                 //cell.transform.localPosition = position;
-                BasedUnitClass bld = Instantiate<MineBuild>(MinePrefab);
+                BasedEntityClass bld = Instantiate<MineBuild>(MinePrefab);
                 bld.transform.localPosition = Center;
                 BuildList.Add(bld);
                 break;

@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Xml;
 using System;
 
-public class MineBuild : BasedUnitClass
+public class MineBuild : BasedEntityClass
 {
     
 
