@@ -24,7 +24,7 @@ public class MineBuild : BasedEntityClass
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()//установит текстуру, в зависимости от фракции
+    void Start()//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
         
     }

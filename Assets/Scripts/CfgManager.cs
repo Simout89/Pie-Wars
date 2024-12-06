@@ -1,10 +1,20 @@
 using UnityEngine;
 
-//будет парсить xml файлы конфига и закидывать настройки в переменные
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ xml пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 public class CfgManager : MonoBehaviour
 {
-    //определяем все структуры(пока только для сахара)
-    struct BasedEntityStruct  //стандартная структура для 1 здания/юнита
+    public string CfgBuildPath = "C:\\Users\\пїЅпїЅпїЅпїЅпїЅ\\Desktop\\Pie-Wars\\Assets\\Scripts\\BuildCfg.xml";
+    XmlDocument MainBuildCfg = new XmlDocument(); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+
+    protected XmlNode PastryBuildCfg;////РєРѕРЅС„РёРі Р·РґР°РЅРёР№ С‚РµСЃС‚Р°
+    protected XmlNode IceBuildCfg;//РєРѕРЅС„РёРі Р·РґР°РЅРёР№ РјРѕСЂРѕР¶РµРЅРЅРѕРіРѕ
+    protected XmlNode ChocolateBuildCfg;//РєРѕРЅС„РёРі Р·РґР°РЅРёР№ С‚РµСЃС‚Р° С€РѕРєРѕР»Р°РґР°
+    protected XmlNode SugarBuildCfg;//РєРѕРЅС„РёРі Р·РґР°РЅРёР№ СЃР°С…Р°СЂР°
+    protected XmlElement cfgRoot;
+
+
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ)
+    struct BasedEntityStruct  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ 1 пїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅ
     {
         int HP;
         int AR;
@@ -13,10 +23,10 @@ public class CfgManager : MonoBehaviour
         int VR;
         int AT;
 
-        int AT_SPEED;   //скорость атаки
-        int VALUE;  //кол-во ресурсов для найма
-        int SCORE; //сколько очков стоит юнит
-        int TIME; //время создания
+        int AT_SPEED;   //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+        int VALUE;  //пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+        int SCORE; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+        int TIME; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
         public void Create(int hp, int ar, int en, int sp, int vr, int at, int at_speed, int value, int score, int time)
         {
@@ -26,14 +36,14 @@ public class CfgManager : MonoBehaviour
             this.SP = sp;
             this.VR = vr;
             this.AT = at;
-            this.AT_SPEED = at_speed;  //-1 если здание/юнит не может атаковать
+            this.AT_SPEED = at_speed;  //-1 пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             this.VALUE = value;
             this.SCORE = score;
             this.TIME = time;
         }
     }
 
-    struct SUGAR_BUILD  //настройки для зданий сахара
+    struct SUGAR_BUILD  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     {
         BasedEntityStruct MainBuild;
         BasedEntityStruct Airfield;
@@ -45,6 +55,16 @@ public class CfgManager : MonoBehaviour
         BasedEntityStruct Fort;
     }
     
+    public CfgManager() {
+        MainBuildCfg.Load(CfgBuildPath);
+        cfgRoot = MainBuildCfg.DocumentElement; 
+
+        PastryBuildCfg = cfgRoot.ChildNodes[0]; 
+        IceBuildCfg = cfgRoot.ChildNodes[1]; 
+        ChocolateBuildCfg = cfgRoot.ChildNodes[2]; 
+        SugarBuildCfg = cfgRoot.ChildNodes[3]; 
+
+    }
 
 
     void Start()
@@ -52,7 +72,20 @@ public class CfgManager : MonoBehaviour
         
     }
 
-    public void ParsSugarBuildsCfg() { }
+    public void ParsSugarBuildsCfg() {
+        int FracId =4;//С„СЂР°РєС†РёСЏ СЃР°С…Р°СЂ
+        for(int i=0;i<8;i+=1){  //i-id Р·РґР°РЅРёСЏ
+            int Hp = Convert.ToInt32(SugarBuildCfg.ChildNodes[i].ChildNodes[0].InnerText);
+            int Ar = Convert.ToInt32(SugarBuildCfg.ChildNodes[i].ChildNodes[1].InnerText);
+            int En = Convert.ToInt32(SugarBuildCfg.ChildNodes[i].ChildNodes[2].InnerText);
+            int Sp = Convert.ToInt32(SugarBuildCfg.ChildNodes[i].ChildNodes[3].InnerText);
+            int Vr = Convert.ToInt32(SugarBuildCfg.ChildNodes[i].ChildNodes[4].InnerText);
+            int At = Convert.ToInt32(SugarBuildCfg.ChildNodes[i].ChildNodes[5].InnerText);
+
+            SUGAR_BUILD[i].Create(Hp,Ar,En,Sp,Vr,At);
+
+        }
+     }
     public void ParsSugarUnitsCfg() { }
 
 

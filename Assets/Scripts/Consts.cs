@@ -1,34 +1,47 @@
-//все константы
+//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 
 static class Constants
 {
-    public const int FRACTION_NEUTRAL = 0;//НЕЙТРАЛЬНАЯ ФРАКЦИЯ(КАМНИ, ДЕРЕВЬЯ И ПОДОБНЫЕ)
-    public const int FRACTION_PASTRY=1;//ТЕСТО              константы фракций
-    public const int FRACTION_ICE = 2;//МОРОЖЕНОЕ
-    public const int FRACTION_CHOCOLATE = 3;//шоколад       
-    public const int FRACTION_SUGAR = 4;//сахар
-    //константы состояния здания
-    public const int BUILD_WORK_PASSIVE = 1;//ЗДАНИЕ РАБОТАЕТ ПАСИВНО
-    public const int BUILD_STOP_PASSIVE = 2;//ЗДАНИЕ ПРОСТАИВАЕТ ПАСИВНО
-    public const int BUILD_WORK_ACTIVELY = 3;//ЗДАНИЕ ЧТО-ТО ВЫПУСКАЕТ
-    public const int BUILD_SHORTAGE = 4;//НЕХВАТКА РЕСУРСОВ
-    //константы хп зданий в конфиге
-    //типы зданий
-    public const int BUILD_UNIT = 0; //ЗДАНИЕ ВЫПУСКАЕТ ОБЫЧНЫХ ЮНИТОВ
-    public const int BUILD_TECHNIQUE_UNIT = 1; //ЗДАНИЕ ВЫПУСКАЕТ ТЕХНИКУ
-    public const int BUILDE_SPECIAL_UNIT = 0; //ЗДАНИЕ ВЫПУСКАЕТ ОСОБЫХ ЮНИТОВ
-    public const int BUILD_MINE = 3; //ЗДАНИЕ ШАХТЫ
-    public const int BUILD_BARRACKS = 4; //ЗДАНИЕ БАРАКА
-    public const int BUILD_PATROL = 5; //ЗДАНИЕ ДОЗОРНОГО ПУНКТА
+    public const int FRACTION_NEUTRAL = 0;//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
+    public const int FRACTION_PASTRY=1;//пїЅпїЅпїЅпїЅпїЅ              пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    public const int FRACTION_ICE = 2;//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    public const int FRACTION_CHOCOLATE = 3;//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ       
+    public const int FRACTION_SUGAR = 4;//пїЅпїЅпїЅпїЅпїЅ
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    public const int BUILD_WORK_PASSIVE = 1;//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    public const int BUILD_STOP_PASSIVE = 2;//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    public const int BUILD_WORK_ACTIVELY = 3;//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    public const int BUILD_SHORTAGE = 4;//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    public const int BUILD_UNIT = 0; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    public const int BUILD_TECHNIQUE_UNIT = 1; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    public const int BUILDE_SPECIAL_UNIT = 0; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    public const int BUILD_MINE = 3; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    public const int BUILD_BARRACKS = 4; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    public const int BUILD_PATROL = 5; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-    //id юнитов
+    //id Р·РґР°РЅРёР№
+    public const int BUILD_MAIN = 0;//РіР»Р°РІРЅРѕРµ Р·РґР°РЅРёРµ
+    public const int BUILD_AIRFIELD = 1;//Р°СЌСЂРѕРїРѕСЂС‚
+    public const int BUILD_WORKSHOP = 2;//РјР°СЃС‚РµСЂСЃРєР°СЏ
+    public const int BUILD_CASERN = 3;//РєР°Р·Р°СЂРјР°
+    public const int BUILD_MINE = 4;//С€Р°С…С‚Р°
+    public const int BUILD_BARRACKS = 5;//Р±Р°СЂР°Рє
+    public const int BUILD_PATROL = 6;//РґРѕР·РѕСЂРЅР°СЏ Р±Р°С€РЅСЏ
+    public const int BUILD_FORT = 7;//С„РѕСЂС‚
+
+    //id пїЅпїЅпїЅпїЅпїЅпїЅ
 
 
-    //константы для юнитов
-    public const int EN_REGEN = 1; //реген энергии в 1 секунду
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    public const int EN_REGEN = 1; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 1 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-    //всякие разные Коэффициент
-    public const float BLOCK_COEF = 0.1f; //коэффиценты блока урона 1 ед брони,проценты
+    //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    public const float BLOCK_COEF = 0.1f; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 1 пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ,пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+
+    //РїСѓС‚Рё Рє СЂР°Р·РЅС‹Рј С„Р°Р№Р»Р°Рј
+    public const strin BUILD_CFG_PATH= "C:\Users\RomaA\OneDrive\Р Р°Р±РѕС‡РёР№ СЃС‚РѕР»\Pie-Wars1234567786\Assets\Scripts\BuildCfg.xml"; //РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ РєРѕРЅС„РёРіР° Р·РґР°РЅРёР№
 
 }
