@@ -14,14 +14,7 @@ static class Constants
     public const int BUILD_WORK_ACTIVELY = 3;//������ ���-�� ���������
     public const int BUILD_SHORTAGE = 4;//�������� ��������
     //��������� �� ������ � �������
-    //���� ������
-    public const int BUILD_UNIT = 0; //������ ��������� ������� ������
-    public const int BUILD_TECHNIQUE_UNIT = 1; //������ ��������� �������
-    public const int BUILDE_SPECIAL_UNIT = 0; //������ ��������� ������ ������
-    public const int BUILD_MINE = 3; //������ �����
-    public const int BUILD_BARRACKS = 4; //������ ������
-    public const int BUILD_PATROL = 5; //������ ��������� ������
-
+    //���� �������
     //id зданий
     public const int BUILD_MAIN = 0;//главное здание
     public const int BUILD_AIRFIELD = 1;//аэропорт
@@ -42,6 +35,6 @@ static class Constants
     public const float BLOCK_COEF = 0.1f; //����������� ����� ����� 1 �� �����,��������
 
     //пути к разным файлам
-    public const strin BUILD_CFG_PATH= "C:\Users\RomaA\OneDrive\Рабочий стол\Pie-Wars1234567786\Assets\Scripts\BuildCfg.xml"; //путь к файлу конфига зданий
+    public const string BUILD_CFG_PATH= "C:/Users/RomaA/OneDrive/Рабочий стол/Pie-Wars1234567786/Assets/Scripts/uildCfg.xml"; //путь к файлу конфига зданий
 
 }
