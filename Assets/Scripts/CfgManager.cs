@@ -16,7 +16,7 @@ public class CfgManager : MonoBehaviour
 
     protected XmlNode PastryBuildCfg;////конфиг зданий теста
     protected XmlNode IceBuildCfg;//конфиг зданий мороженного
-    protected XmlNode ChocolateBuildCfg;//конфиг зданий теста шоколада
+    protected XmlNode ChocolateBuildCfg;//конфиг зданий  шоколада
     protected XmlNode SugarBuildCfg;//конфиг зданий сахара
     protected XmlElement cfgRoot;
 
