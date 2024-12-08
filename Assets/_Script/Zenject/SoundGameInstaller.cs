@@ -1,3 +1,4 @@
+using _Script.Mediator;
 using Zenject;
 
 namespace _Script.Zenject
@@ -6,7 +7,7 @@ namespace _Script.Zenject
     {
         public override void InstallBindings()
         {
-            Container.Bind<SoundManager>().AsSingle().NonLazy(); 
+            Container.Bind<SoundMediator>().AsSingle().NonLazy(); 
         }
     }
 }
