@@ -8,23 +8,23 @@ using System.Collections.Specialized;
 using System.Reflection.Emit;
 using UnityEngine.UIElements;
 
-//отвечает за создание новых зданий
-//хранит массив всех зданий
-//отвечает за уничтожение всех зданий
-//отвечает за улучшения всех зданий
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 public class BuildManager : MonoBehaviour
 {
 
-    string CfgBuildPath = "C:\\Users\\Роман\\Desktop\\Pie-Wars\\Assets\\Scripts\\BuildCfg.xml";
-    XmlDocument MainBuildCfg = new XmlDocument(); //конфик полностью
+    string CfgBuildPath = "C:\\Users\\RomaA\\OneDrive\\Р Р°Р±РѕС‡РёР№ СЃС‚РѕР»\\Pie-Wars\\Assets\\Scripts\\BuildCfg.xml";
+    XmlDocument MainBuildCfg = new XmlDocument(); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-    protected XmlNode PastryBuildCfg;//узел с конфигом зданий фракции тесто
-    protected XmlNode IceBuildCfg;//узел с конфигом зданий фракции мороженное
-    protected XmlNode ChocolateBuildCfg;//узел с конфигом зданий фракции шоколад
-    protected XmlNode SugarBuildCfg;//узел с конфигом зданий фракции сахар
+    protected XmlNode PastryBuildCfg;//пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    protected XmlNode IceBuildCfg;//пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    protected XmlNode ChocolateBuildCfg;//пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    protected XmlNode SugarBuildCfg;//пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     protected XmlElement cfgRoot;
 
-    public List<BasedUnitClass> BuildList = new List<BasedUnitClass>(); //массив всех зданий
+    public List<BasedUnitClass> BuildList = new List<BasedUnitClass>(); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
    
     public MineBuild MinePrefab;
@@ -35,12 +35,12 @@ public class BuildManager : MonoBehaviour
 
     public BuildManager() {
         MainBuildCfg.Load(CfgBuildPath);
-        cfgRoot = MainBuildCfg.DocumentElement; //корневой элемент
+        cfgRoot = MainBuildCfg.DocumentElement; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-        PastryBuildCfg = cfgRoot.ChildNodes[0]; //настройки для зданий теста
-        IceBuildCfg = cfgRoot.ChildNodes[1]; //настройки для зданий мороженного
-        ChocolateBuildCfg = cfgRoot.ChildNodes[2]; //настройки для зданий шоколада
-        SugarBuildCfg = cfgRoot.ChildNodes[3]; //настройки для зданий сахара
+        PastryBuildCfg = cfgRoot.ChildNodes[0]; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+        IceBuildCfg = cfgRoot.ChildNodes[1]; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        ChocolateBuildCfg = cfgRoot.ChildNodes[2]; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        SugarBuildCfg = cfgRoot.ChildNodes[3]; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
     }
 
@@ -56,7 +56,7 @@ public class BuildManager : MonoBehaviour
         
     }
 
-    public void AddBuild(int TypeBuild, Vector3 position) //добовляет здание в массив и на карту
+    public void AddBuild(int TypeBuild, Vector3 position) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     {
 
         //position = transform.InverseTransformPoint(position);
@@ -68,9 +68,9 @@ public class BuildManager : MonoBehaviour
 
         position = transform.InverseTransformPoint(position);
         HexCoordinates coordinates = HexCoordinates.FromPosition(position);
-        int CellId = coordinates.X + coordinates.Z * HexMesh.width + coordinates.Z / 2; //id кдетки на которой будет здание
+        int CellId = coordinates.X + coordinates.Z * HexMesh.width + coordinates.Z / 2; //id пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         Vector3 t = new Vector3(0f, 0.5f, 0f);
-        Vector3 Center = HexMesh.cells[CellId].transform.position*2f - t;//центр клетки на корой будет здание
+        Vector3 Center = HexMesh.cells[CellId].transform.position*2f - t;//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         Debug.Log(Center);
         Debug.Log(CellId);
 

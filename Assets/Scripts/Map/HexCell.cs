@@ -10,10 +10,10 @@ public class HexCell : MonoBehaviour
 {
 
     [SerializeField]
-    HexCell[] neighbors;//соседи
+    HexCell[] neighbors;//пїЅпїЅпїЅпїЅпїЅпїЅ
 
-    public int elevation;//высота
-    public const float elevationStep = 5f;//шаг высоты
+    public int elevation;//пїЅпїЅпїЅпїЅпїЅпїЅ
+    public const float elevationStep = 5f;//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 
     UnityEngine.Color TouchColor = UnityEngine.Color.red;
@@ -38,15 +38,15 @@ public class HexCell : MonoBehaviour
         MakeBridge();
 
     }
-    public HexCell GetNeighbor(HexDirection direction)  //получить соседей
+    public HexCell GetNeighbor(HexDirection direction)  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
         return neighbors[(int)direction];   
     }
  
-    public void SetNeighbor(HexDirection direction, HexCell cell)  //задание соседа
+    public void SetNeighbor(HexDirection direction, HexCell cell)  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     {
         neighbors[(int)direction] = cell;
-        cell.neighbors[(int)direction.Opposite()] = this; //для противоположной клетки
+        cell.neighbors[(int)direction.Opposite()] = this; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     }
 
     public void TestFunc()
@@ -74,14 +74,14 @@ public class HexCell : MonoBehaviour
 
 
 
-        //вершины
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         Vector3[] vert = new Vector3[18] {
 
             Center, new Vector3(), new Vector3() ,new Vector3() ,new Vector3(),new Vector3(),new Vector3(),new Vector3(),new Vector3(),new Vector3()
             ,new Vector3(),new Vector3(),new Vector3(),new Vector3(),new Vector3(),new Vector3(),new Vector3(),new Vector3()
         };
-
-        //треугольники
+        
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
         int[] tri = new int[18];
 
@@ -109,7 +109,7 @@ public class HexCell : MonoBehaviour
         tri[16] = 6;
         tri[17] = 1;
 
-        // отображение текструры
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
             //......
 
@@ -118,7 +118,7 @@ public class HexCell : MonoBehaviour
         }
 
 
-        //получаем вершины 7-18:
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 7-18:
 
         mesh.vertices = vert;
         mesh.triangles = tri;
@@ -129,7 +129,7 @@ public class HexCell : MonoBehaviour
 
 
     public void MakeBridge()
-    {  // создает мосты между клетками / вынести повторяюшиеся элементы из ф-ции выше в отдельныю функцию!!!!!!
+    {  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ / пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ-пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ!!!!!!
 
         Vector3 Center = transform.position;
 
@@ -141,20 +141,20 @@ public class HexCell : MonoBehaviour
 
         mesh.Clear();
 
-        //вершины
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         Vector3[] vert = new Vector3[19] {
 
             Center, new Vector3(), new Vector3() ,new Vector3() ,new Vector3(),new Vector3(),new Vector3(),new Vector3(),new Vector3(),new Vector3()
             ,new Vector3(),new Vector3(),new Vector3(),new Vector3(),new Vector3(),new Vector3(),new Vector3(),new Vector3(),new Vector3()
         };
 
-        //треугольники
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
         int[] tri = new int[72];
 
        
 
-        // отображение текструры
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
         //......
 
@@ -164,9 +164,9 @@ public class HexCell : MonoBehaviour
         }
 
 
-        //получаем вершины 7-18:
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 7-18:
 
-        //id вершины в corners
+        //id пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ corners
         Vector3 NeighborCenter = new Vector3();
         for (int neighbor_id = 0; neighbor_id < 6; neighbor_id++)
         {
@@ -215,7 +215,7 @@ public class HexCell : MonoBehaviour
             //Debug.Log(NeighborCenter);
         }
 
-        //получаем вершины 7-18:
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 7-18:
 
 
         tri[0] = 0; tri[18] = 6; tri[36] = 14; tri[54] = 6;
