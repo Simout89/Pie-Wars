@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Xml;
 using System;
 
-public class MineBuild : BasedUnitClass
+public class MineBuild : BasedEntityClass
 {
     
 
@@ -24,7 +24,7 @@ public class MineBuild : BasedUnitClass
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()//установит текстуру, в зависимости от фракции
+    void Start()//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
         
     }

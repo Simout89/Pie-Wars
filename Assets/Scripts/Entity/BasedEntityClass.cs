@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BasedUnitClass : MonoBehaviour
+public class BasedEntityClass : MonoBehaviour
 {
 
     protected struct Characteristics
