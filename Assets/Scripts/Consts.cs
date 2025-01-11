@@ -3,7 +3,7 @@
 
 static class Constants
 {
-    public const string CFG_PATH = "C:\\Users\\RomaA\\OneDrive\\Документы\\Pie Wars\\cfg.txt";
+    public const string CFG_PATH = "D:\\cfg_v2.dat";
     public const int FRACTION_NEUTRAL = 0;//����������� �������(�����, ������� � ��������)
     public const int FRACTION_PASTRY=1;//�����              ��������� �������
     public const int FRACTION_ICE = 2;//���������
@@ -23,7 +23,11 @@ static class Constants
     public const int BUILD_BARRACKS = 4; //������ ������
     public const int BUILD_PATROL = 5; //������ ��������� ������
 
-    //id ������
+    //id всех юнитов и зданий//id of all units and buildings
+    //sugar
+    public const int SUGAR_UNIT_PEKHOTINEC = 0;
+    public const int SUGAR_UNIT_GRENADER = 1;
+    
 
 
     //��������� ��� ������

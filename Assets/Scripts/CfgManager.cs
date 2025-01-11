@@ -98,7 +98,7 @@ public class CfgManager : MonoBehaviour
     public SUGAR_BUILD SugarBldCfg = new SUGAR_BUILD();
     
     public CfgManager() {
-        MainBuildCfg.Load(Constants.BUILD_CFG_PATH);
+        //MainBuildCfg.Load(Constants.BUILD_CFG_PATH);
         cfgRoot = MainBuildCfg.DocumentElement; 
 
         PastryBuildCfg = cfgRoot.ChildNodes[0]; 

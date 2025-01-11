@@ -1,39 +1,47 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
-public class BasedEntityClass : MonoBehaviour
-{
 
-    protected struct Characteristics
-    {          //характеристики юнита
 
-        private int HP;
-        private int AR;
-        private int EN;
-        private int SP;
-        private int VR;
-        private int AT;
 
-        public Characteristics(int hp, int ar, int en, int sp, int vr, int at)
-        {
-            this.HP = hp;
-            this.AR = ar;
-            this.EN = en;
-            this.SP = sp;
-            this.VR = vr;
-            this.AT = at;
-        }
 
-        public int[] get()
-        {            //возвращает текущие характеристики юнита
-            return new int[] { this.HP, this.AR, this.EN, this.SP, this.VR, this.AT };
-        }
+public class EntityCfg{    //РЅР°СЃС‚СЂРѕР№РєРё РґР»СЏ РѕС‚РґРµР»СЊРЅРѕР№ СЃСЋС‰Р±РЅРѕСЃС‚Рё // settings for a separate entity
+    private double HP;
+    private double AR;
+    private double EN;
+    private double SP;
+    private double VR;
+    private double AT;
+    private double ATS;
+    private double AT_RANGE;
+    private double COST_JR;
+    private double COST_CK;
+    private double SCORE;
+    private double TIME_SPAWN;
+    public EntityCfg(double[] data){
+        HP = data[0];
+        AR = data[1];
+        EN = data[2];
+        SP = data[3];
+        VR = data[4];
+        AT = data[5];
+        ATS = data[6];
+        AT_RANGE = data[7];
+        COST_JR = data[8];
+        COST_CK = data[9];
+        SCORE = data[10];
+        TIME_SPAWN = data[11];
+    }
 
-        public void Damage(int dmg)
-        {           //для всех, кроме фракции сахара /1 броня блокирует n% урона
-            dmg = (int)(dmg * 0.1 * this.AR);
+    public double[] getAll(){    
+            return new double[] { this.HP, this.AR, this.EN, this.SP, this.VR, this.AT, this.ATS, this.AT_RANGE, this.COST_JR, this.COST_CK,this.SCORE, this.TIME_SPAWN };
+    }
+     public void Damage(double dmg)
+        {           
+            dmg = dmg * 0.1 * this.AR;
             this.HP -= dmg;
         }
-        public void DamageSugar(int dmg)  //урон для сахара
+        public void DamageSugar(double dmg)              
         {
             if (dmg <= this.AR)
             {
@@ -48,22 +56,30 @@ public class BasedEntityClass : MonoBehaviour
         }
 
         public void EnRegen()
-        {         //реген энергии
+        {           
             this.EN += Constants.EN_REGEN;
         }
 
         public void Change_EN(int en)
-        { //расход энергии
+        {            
             this.EN -= en;
         }
+}
+
+public class BasedEntityClass : MonoBehaviour //Р‘РђР—РћР’Р«Р™ РљР›РђРЎРЎ Р”Р›РЇ Р’РЎР•РҐ Р®РќРРўРћР’ Р Р—Р”РђРќРР™//BASIC CLASS FOR ALL UNITS AND BUILDINGS
+{
+    
+    protected EntityCfg Characteristics;
+
+
+    public BasedEntityClass(int enity_id){
+        //this.Characteristics = Config.CfgData[enity_id_id];
+        this.Characteristics = GameObject.Find("EnityConfig").GetComponent<Config>().CfgData[enity_id];
+
     }
-
-    protected int FractionId;
-    protected int Level;
-    protected int Statis;
-    protected int ObjType; //id юнита или здания
-    protected Characteristics Char;
-
+    public void Spawn(){}
+    public void Destroy(){}
+    public void Move(){}
 
 
 
