@@ -74,7 +74,11 @@ public abstract class BasedEntityClass : MonoBehaviour //БАЗОВЫЙ КЛАС
         this.Characteristics = GameObject.Find("EnityConfig").GetComponent<Config>().CfgData[enity_id];
 
     }
-    public abstract void Move();
-    public abstract void Spawn();
-    public void Destroy(){}
+    public abstract void Move(Vector3 cord);
+    public abstract void Spawn(Vector3 cord);
+    public abstract void Atack(BasedEntityClass target);
+    public void Destroy(){
+
+        
+    }
 }
