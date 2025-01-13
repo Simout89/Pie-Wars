@@ -10,7 +10,8 @@ public abstract class Unit:BasedEntityClass, IPointerClickHandler
         //для обработки клика на юнит//to handle clicks on a unit
         //добавит его с список выбранных юнитов//will add it to the list of selected units
         if(eventData.pointerId==-1){
-            Debug.Log("Click obj");
+            GameObject.Find("System").GetComponent<SelectUnits>().AddInSelectedUnit(this);
+            Debug.Log("Obj add in selected units list");
         }
 
     }

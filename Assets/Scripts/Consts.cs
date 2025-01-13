@@ -3,7 +3,10 @@
 
 static class Constants
 {
+    //main consts
     public const string CFG_PATH = "D:\\cfg_v2.dat";
+    public const int COUNT_ENTITY = 17;//кол-во сущностей 
+    //main consts
     public const int FRACTION_NEUTRAL = 0;//����������� �������(�����, ������� � ��������)
     public const int FRACTION_PASTRY=1;//�����              ��������� �������
     public const int FRACTION_ICE = 2;//���������
@@ -15,13 +18,8 @@ static class Constants
     public const int BUILD_WORK_ACTIVELY = 3;//������ ���-�� ���������
     public const int BUILD_SHORTAGE = 4;//�������� ��������
     //��������� �� ������ � �������
-    //���� ������
-    public const int BUILD_UNIT = 0; //������ ��������� ������� ������
-    public const int BUILD_TECHNIQUE_UNIT = 1; //������ ��������� �������
-    public const int BUILDE_SPECIAL_UNIT = 0; //������ ��������� ������ ������
-    public const int BUILD_MINE = 3; //������ �����
-    public const int BUILD_BARRACKS = 4; //������ ������
-    public const int BUILD_PATROL = 5; //������ ��������� ������
+   
+    
 
     //id всех юнитов и зданий//id of all units and buildings
     //sugar
