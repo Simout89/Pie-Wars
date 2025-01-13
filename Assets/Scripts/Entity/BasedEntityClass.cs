@@ -66,7 +66,7 @@ public class EntityCfg{    //настройки для отдельной сющ
         }
 }
 
-public abstract class BasedEntityClass : MonoBehaviour //БАЗОВЫЙ КЛАСС ДЛЯ ВСЕХ ЮНИТОВ И ЗДАНИЙ//BASIC CLASS FOR ALL UNITS AND BUILDINGS
+public abstract class BasedEntityClass  //БАЗОВЫЙ КЛАСС ДЛЯ ВСЕХ ЮНИТОВ И ЗДАНИЙ//BASIC CLASS FOR ALL UNITS AND BUILDINGS
 {
     protected EntityCfg Characteristics;
     public BasedEntityClass(int enity_id){

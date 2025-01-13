@@ -1,0 +1,24 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+
+//отвечает за выбор юнитов областью, выбор юнитов по одному реализован в классе самого юнита
+public class SelectUnits : MonoBehaviour
+{
+    public List<Unit>SelectedUnist = new();
+    
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void AddInSelectedUnit(Unit obj){ //добавит 1 юнита в список//will add 1 unit to the list
+        SelectedUnist.Add(obj);
+    }
+}
