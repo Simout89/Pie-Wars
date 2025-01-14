@@ -10,15 +10,16 @@ using UnityEngine;
 public class UnitControl: MonoBehaviour
 {
 
-
     public void MoveUnits(Vector3 cords, ref List<Unit> SelectedUnist){
         //перемещает всех выбранных юнитов в точку(можно переместить 1 юнита)
         //moves all selected units to the point (can move 1 unit)
         foreach(Unit unit in SelectedUnist ){
             unit.Move(cords);
         }
+    }
 
-
+    void Update(){
+        
     }
 
 

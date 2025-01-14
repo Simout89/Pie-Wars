@@ -16,7 +16,7 @@ using UnityEngine.EventSystems;
 public class MapClickHendler : MonoBehaviour, IPointerClickHandler
 {
 
-    private int Mode = -1;
+    private int Mode = Constants.MODE_MAP_DEFAULT;
     public Camera _Camera;
     
     public void OnPointerClick(PointerEventData eventData){
@@ -26,9 +26,10 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler
         /// режимы:
         /// -1. режим по умолчанию
         /// 0. режим строительства, если этот режим активен, то на месте клика будет построенно здание/заспавнен юнит
-        /// 1. режим атаки: атаковать цель на точке клика(выпустить луч, определить с каким калайдером этот луч пересекается, атаковать объект с этим калайдером)
-        /// 2. установка точки, куда будут идти рабочие юниты после спавна(можно реализовать в скрипте здания)
-        /// 3. установка точки, куда будут идти боевые юниты после спавна(можно реализовать в скрипте здания)
+        /// 1. режим ожидания приказа двигаться к точке
+        /// 2. режим атаки: атаковать цель на точке клика(выпустить луч, определить с каким калайдером этот луч пересекается, атаковать объект с этим калайдером)
+        /// 3. установка точки, куда будут идти рабочие юниты после спавна(можно реализовать в скрипте здания)
+        /// 4. установка точки, куда будут идти боевые юниты после спавна(можно реализовать в скрипте здания)
         /// </summary>
 
         if(eventData.button==PointerEventData.InputButton.Left){ 
@@ -61,6 +62,36 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler
         //Vector3
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            switch (Mode)
+            {
+                case -1:
+                    Debug.Log("Click in mode -1");
+                    break;
+                case 0:
+                    Debug.Log("Click in mode 0");
+                    Mode = -1;
+                    break;
+                case 1:
+                    Debug.Log("Click in mode 1");
+                    break;
+                case 2:
+                    Debug.Log("Click in mode 2");
+                    break;
+                case 3:
+                    Debug.Log("Click in mode 3");
+                    Mode = -1;
+                    break;
+                case 4:
+                    Debug.Log("Click in mode 4");
+                    Mode = -1;
+                    break;
+
+                default:
+                    break;
+                    
+            }
+
+
             
         }
 

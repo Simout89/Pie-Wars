@@ -1,6 +1,8 @@
 //��� ���������
 
 
+using UnityEditor;
+
 static class Constants
 {
     //main consts
@@ -25,6 +27,16 @@ static class Constants
     //sugar
     public const int SUGAR_UNIT_PEKHOTINEC = 0;
     public const int SUGAR_UNIT_GRENADER = 1;
+
+
+
+    //режим карты//mode map
+    public const int MODE_MAP_DEFAULT = -1; //СТАНДАРТНОЕ СОСТОЯНИЕ КАРТЫ
+    public const int MODE_MAP_SPAWN = 0; //ожидает клика по месту для строительства
+    public const int MODE_MAP_WAIT_TARGET = 1; //ожидает точки, куда пойдут юнит(ы)/АТАКИ
+    //public const int MODE_MAP_WAIT_TARGET_ATACK = 2;//ОЖИДАЕТ ЦЕЛИ ДЛЯ АТАКИ
+    public const int MODE_MAP_WAIT_FLAG_SOLIDER = 2;//ОЖИДАЕТ КЛИКА ПО ТОЧКЕ, КУДА БУДУТ ИДТИ ЮНИТЫ-СОЛДАТЫ ПОСЛЕ СПАВНА
+    public const int MODE_MAP_WAIT_FLAG_WORKER = 3;//ОЖИДАЕТ КЛИКА ПО ТОЧКЕ, КУДА БУДУТ ИДТИ ЮНИТЫ-РАБОЧИЕ ПОСЛЕ СПАВНА
     
 
 
