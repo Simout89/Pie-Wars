@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections;
 
 
 /// <summary>
@@ -11,10 +12,20 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] public GameObject[] EntityPrefabs= new GameObject[Constants.COUNT_ENTITY];//Список префабов юнитов и зданий//prefabs list
     
-    private  List<Unit> UnitsList = new(); //все юниты//all units
-    
-    void AddUnit(Unit unt){
+    private  List<GameObject> UnitsList = new(); //все юниты//all units
+
+    void AddUnit(GameObject unt){
         UnitsList.Add(unt);
+        Debug.Log(UnitsList[0]);
+    }
+    public void SpawnUnit(Vector3 pos, int unit_id){
+        GameObject unt = Instantiate(EntityPrefabs[unit_id], pos, Quaternion.identity);
+        AddUnit(unt);
+
     }
     
+    public void Update(){
+        
+    }
+
 }

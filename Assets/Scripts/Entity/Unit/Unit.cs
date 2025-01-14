@@ -27,6 +27,5 @@ public abstract class Unit:MonoBehaviour, IPointerClickHandler
     public abstract void Atack(BasedEntityClass target);
     public void Destroy(){
 
-        
     }
 }
