@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonController : MonoBehaviour
 {
@@ -12,5 +13,11 @@ public class ButtonController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SetMapModeSpawnSugar002(){
+        this.GetComponent<MapClickHendler>().SetMapMode(Constants.MODE_MAP_SPAWN);
+        this.GetComponent<MapClickHendler>().SetEntityId(2);
+
     }
 }

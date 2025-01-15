@@ -17,6 +17,7 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler
 {
 
     private int Mode = Constants.MODE_MAP_DEFAULT;
+    private int EntityId = -1;//id юнита/здания которое надо заспвнить
     public Camera _Camera;
     
     public void OnPointerClick(PointerEventData eventData){
@@ -50,6 +51,9 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler
     public void SetMapMode(int mode){
         Mode = mode;
     }
+    public void SetEntityId(int entity_id){
+        EntityId = entity_id;
+    }
 
     void Start()
     {
@@ -68,9 +72,17 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler
                     Debug.Log("Click in mode -1");
                     break;
                 case 0:
-                    Debug.Log("Click in mode 0");
-                    Mode = -1;
-                    break;
+                    if(EntityId==-1){
+                        Mode = -1;
+                        break;
+                    }else{
+                        this.GetComponent<Spawner>().SpawnUnit(GetClickPos(),EntityId);
+                        Mode = -1;
+                        SetEntityId(-1);
+                        break;
+                    }
+                    //Debug.Log("Click in mode 0");
+                    
                 case 1:
                     Debug.Log("Click in mode 1");
                     break;
@@ -88,11 +100,13 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler
 
                 default:
                     break;
-                    
-            }
+            } 
+        }
 
-
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
             
+            this.GetComponent<UnitControl>().MoveUnits(GetClickPos(),ref this.GetComponent<SelectUnits>().SelectedUnist);
         }
 
 
