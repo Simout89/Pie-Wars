@@ -18,6 +18,11 @@ public abstract class Unit:MonoBehaviour, IPointerClickHandler
                 GameObject.Find("System").GetComponent<SelectUnits>().AddInSelectedUnit(this);
                 Debug.Log("Unit click");
             }
+            return;
+        }
+        if(eventData.button==PointerEventData.InputButton.Left){
+                GameObject.Find("System").GetComponent<SelectUnits>().ClearSelectedUnits();
+                GameObject.Find("System").GetComponent<SelectUnits>().AddInSelectedUnit(this);
         }
     }
     //public void Start(){Debug.Log("123445");}

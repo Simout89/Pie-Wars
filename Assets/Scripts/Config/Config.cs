@@ -12,16 +12,16 @@ using System.Collections.Generic;
 
 
 public class Config: MonoBehaviour{       //ТУТ ХРАНЯТСЯ ВСЕ НАСТРОЙКИ ДЛЯ ВСЕХ СУЩНОСТЕЙ//ALL SETTINGS FOR ALL ENTITIES ARE STORED HERE
-    //private string CfgPath = "D:\\cfg_v2.dat";
-    private string CfgPath = Constants.CFG_PATH;
+    private string CfgPath = "D:\\cfg_v2.dat";
+    //private string CfgPath = Constants.CFG_PATH;
     private BinaryWriter writer;
     private BinaryReader reader;
 
     public List<EntityCfg> CfgData = new List<EntityCfg>();
 
-    public Config(string Path){
-        CfgPath = Path;
-    }
+    //public Config(string Path){
+        //CfgPath = Path;
+    //}
 
     void Start(){
         Read();

@@ -20,7 +20,7 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler
     private int EntityId = -1;//id юнита/здания которое надо заспвнить
     public Camera _Camera;
     
-    public void OnPointerClick(PointerEventData eventData){
+    public void OnPointerClick(UnityEngine.EventSystems.PointerEventData eventData){
         /// <summary>
         /// лкм - получить позицию клика на карте
         /// действия после получения клика зависят от текушего режима
@@ -32,9 +32,26 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler
         /// 3. установка точки, куда будут идти рабочие юниты после спавна(можно реализовать в скрипте здания)
         /// 4. установка точки, куда будут идти боевые юниты после спавна(можно реализовать в скрипте здания)
         /// </summary>
+        GameObject _System = GameObject.Find("System");
+        if(Input.GetKey(KeyCode.LeftShift)){ 
+            if(eventData.button==PointerEventData.InputButton.Left){
 
-        if(eventData.button==PointerEventData.InputButton.Left){ 
-            Debug.Log(GetClickPos());
+                if(Mode!=Constants.MODE_MAP_WAIT_FLAG_SOLIDER | Mode!=Constants.MODE_MAP_WAIT_FLAG_WORKER){
+
+                }
+                else{
+                    _System.GetComponent<SelectUnits>().ClearSelectedUnits();
+                    //System.GetComponent<SelectUnits>().ClearSelectOneUnit();
+                    SetMapMode(Constants.MODE_MAP_DEFAULT);
+                }
+            }
+        }
+        if(eventData.button==PointerEventData.InputButton.Right){
+            if(Mode==Constants.MODE_MAP_WAIT_TARGET){
+                Vector3 target = GetClickPos();
+                _System.GetComponent<UnitControl>().MoveUnits(target);
+            }
+                
         }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -44,7 +61,6 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler
         Ray ray = _Camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit)) {
             pos = hit.point;
-            Debug.Log("Click map");
         }
         return pos;
     }
@@ -64,53 +80,14 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler
     // Update is called once per frame
     void Update()
     {
-        //Vector3
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            switch (Mode)
-            {
-                case -1:
-                    this.GetComponent<SelectUnits>().ClearSelectedUnits();
-                    Debug.Log("Click in mode -1");
-                    break;
-                case 0:
-                    if(EntityId==-1){
-                        Mode = -1;
-                        break;
-                    }else{
-                        this.GetComponent<Spawner>().SpawnUnit(GetClickPos(),EntityId);
-                        Mode = -1;
-                        SetEntityId(-1);
-                        break;
-                    }
-                    //Debug.Log("Click in mode 0");
-                    
-                case 1:
-                    this.GetComponent<SelectUnits>().ClearSelectedUnits();
-                    break;
-                case 2:
-                    Debug.Log("Click in mode 2");
-                    break;
-                case 3:
-                    Debug.Log("Click in mode 3");
-                    Mode = -1;
-                    break;
-                case 4:
-                    Debug.Log("Click in mode 4");
-                    Mode = -1;
-                    break;
-
-                default:
-                    break;
-            } 
+           
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            
-            this.GetComponent<UnitControl>().MoveUnits(GetClickPos(),ref this.GetComponent<SelectUnits>().SelectedUnist);
+
         }
-
-
     }
 }

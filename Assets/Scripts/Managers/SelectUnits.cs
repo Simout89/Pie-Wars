@@ -6,11 +6,12 @@ using UnityEngine;
 public class SelectUnits : MonoBehaviour
 {
     public List<Unit>SelectedUnist = new();
+    private Unit SelectUnit; //выбранный сейчас юнит
     private MapClickHendler MapClickHendler;
     
     void Start()
     {
-        MapClickHendler = this.GetComponent<MapClickHendler>();
+        MapClickHendler = GameObject.Find("Terrain").GetComponent<MapClickHendler>();
     }
 
     // Update is called once per frame
@@ -23,11 +24,16 @@ public class SelectUnits : MonoBehaviour
     }
 
     public void AddInSelectedUnit(Unit obj){ //добавит 1 юнита в список//will add 1 unit to the list
+        SelectUnit = null;
         SelectedUnist.Add(obj);
     }
-
     public void ClearSelectedUnits(){
         SelectedUnist.Clear();
     }
-
+    public void SelectOneUnit(Unit obj){
+        SelectUnit = obj;
+    }
+    public void ClearSelectOneUnit(){
+        SelectUnit = null;
+    }
 }
