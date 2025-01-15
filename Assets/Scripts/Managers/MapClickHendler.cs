@@ -44,6 +44,7 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler
         Ray ray = _Camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit)) {
             pos = hit.point;
+            Debug.Log("Click map");
         }
         return pos;
     }
@@ -69,6 +70,7 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler
             switch (Mode)
             {
                 case -1:
+                    this.GetComponent<SelectUnits>().ClearSelectedUnits();
                     Debug.Log("Click in mode -1");
                     break;
                 case 0:

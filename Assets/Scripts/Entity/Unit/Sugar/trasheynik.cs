@@ -2,8 +2,13 @@ using UnityEngine;
 
 public class trasheynik:Unit
 {
-    public trasheynik(int enity_id) : base(enity_id){
+    //public trasheynik(){
         
+    //}
+
+    void Start(){
+        MoveCord = transform.position;
+        Characteristics = GameObject.Find("EnityConfig").GetComponent<Config>().CfgData[2];
     }
 
     public override void Atack(BasedEntityClass target){

@@ -9,22 +9,24 @@ using UnityEngine.EventSystems;
 public abstract class Unit:MonoBehaviour, IPointerClickHandler
 {
     private bool MoveMode=false;
-    private Vector3 MoveCord; 
+    protected Vector3 MoveCord; 
     public void OnPointerClick(UnityEngine.EventSystems.PointerEventData eventData){
         //для обработки клика на юнит//to handle clicks on a unit
         //добавит его с список выбранных юнитов//will add it to the list of selected units
-        if(eventData.button==PointerEventData.InputButton.Left){
-            GameObject.Find("System").GetComponent<SelectUnits>().AddInSelectedUnit(this);
-            Debug.Log("Unit click");
+        if(Input.GetKey(KeyCode.LeftShift)){ //добавляет юнитов с спмсок выбранных только с зажатым LShift
+            if(eventData.button==PointerEventData.InputButton.Left){
+                GameObject.Find("System").GetComponent<SelectUnits>().AddInSelectedUnit(this);
+                Debug.Log("Unit click");
+            }
         }
     }
     //public void Start(){Debug.Log("123445");}
     protected EntityCfg Characteristics;
-    public Unit(int enity_id){
+    //public Unit(int enity_id){
         //this.Characteristics = Config.CfgData[enity_id_id];
         //this.Characteristics = GameObject.Find("EnityConfig").GetComponent<Config>().CfgData[enity_id];
 
-    }
+    //}
     public  void Move(Vector3 cord){
         //transform.position = Vector3.Lerp(transform.position, cord, 1 * Time.deltaTime);
         MoveMode = true;
@@ -38,8 +40,5 @@ public abstract class Unit:MonoBehaviour, IPointerClickHandler
 
     public void Update(){
         transform.position = Vector3.Lerp(transform.position, MoveCord,  Time.deltaTime);
-    }
-    public void Start(){
-        MoveCord = transform.position;
     }
 }
