@@ -26,4 +26,8 @@ public class SelectUnits : MonoBehaviour
         SelectedUnist.Add(obj);
     }
 
+    public void ClearSelectedUnits(){
+        SelectedUnist.Clear();
+    }
+
 }

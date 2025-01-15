@@ -84,7 +84,7 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler
                     //Debug.Log("Click in mode 0");
                     
                 case 1:
-                    Debug.Log("Click in mode 1");
+                    this.GetComponent<SelectUnits>().ClearSelectedUnits();
                     break;
                 case 2:
                     Debug.Log("Click in mode 2");
