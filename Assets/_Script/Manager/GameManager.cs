@@ -8,7 +8,7 @@ namespace _Script.Manager
     {
         private List<Player> _players = new();
         
-        private void OnEnable()
+        private void OnEnable() 
         {
             StructureBreakMediator.Instance.Register(this);
         }

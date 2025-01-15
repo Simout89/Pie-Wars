@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
+[RequireComponent(typeof(Button))]
 public class DebugSpawnButton: MonoBehaviour
 {
     [SerializeField] private TMP_InputField _objectID;
