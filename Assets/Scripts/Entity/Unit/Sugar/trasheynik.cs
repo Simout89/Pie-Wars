@@ -8,7 +8,7 @@ public class trasheynik:Unit
 
     void Start(){
         MoveCord = transform.position;
-        //Characteristics = GameObject.Find("EnityConfig").GetComponent<Config>().CfgData[2];
+        Characteristics = GameObject.Find("EnityConfig").GetComponent<Config>().CfgData[2];
     }
 
     public override void Atack(BasedEntityClass target){
