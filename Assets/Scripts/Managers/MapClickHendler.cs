@@ -33,19 +33,18 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler
         /// 4. установка точки, куда будут идти боевые юниты после спавна(можно реализовать в скрипте здания)
         /// </summary>
         GameObject _System = GameObject.Find("System");
-        if(Input.GetKey(KeyCode.LeftShift)){ 
+        //if(Input.GetKey(KeyCode.LeftShift)){ 
             if(eventData.button==PointerEventData.InputButton.Left){
-
-                if(Mode!=Constants.MODE_MAP_WAIT_FLAG_SOLIDER | Mode!=Constants.MODE_MAP_WAIT_FLAG_WORKER){
+                //Debug.Log("222222222");
+                if(Mode==Constants.MODE_MAP_WAIT_FLAG_SOLIDER | Mode==Constants.MODE_MAP_WAIT_FLAG_WORKER){
 
                 }
                 else{
                     _System.GetComponent<SelectUnits>().ClearSelectedUnits();
-                    //System.GetComponent<SelectUnits>().ClearSelectOneUnit();
                     SetMapMode(Constants.MODE_MAP_DEFAULT);
                 }
             }
-        }
+        //}
         if(eventData.button==PointerEventData.InputButton.Right){
             if(Mode==Constants.MODE_MAP_WAIT_TARGET){
                 Vector3 target = GetClickPos();

@@ -11,7 +11,7 @@ public class trasheynik:Unit
         Characteristics = GameObject.Find("EnityConfig").GetComponent<Config>().CfgData[2];
     }
 
-    public override void Atack(BasedEntityClass target){
+    public override void Atack(Unit target){
 
     }
 }

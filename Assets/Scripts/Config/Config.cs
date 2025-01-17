@@ -100,7 +100,6 @@ public class Config: MonoBehaviour{       //ТУТ ХРАНЯТСЯ ВСЕ НА�
             data[i]=reader.ReadDouble();
             
             if(i==11){
-                Debug.Log("1111");
                 CfgData.Add(new EntityCfg(data));
                 i=0;
                 k+=1;

@@ -28,6 +28,10 @@ public class SelectUnits : MonoBehaviour
         SelectedUnist.Add(obj);
     }
     public void ClearSelectedUnits(){
+
+        foreach(Unit unit in this.GetComponent<SelectUnits>().SelectedUnist ){
+            unit.DelFromSelectetUnits();
+        }
         SelectedUnist.Clear();
     }
     public void SelectOneUnit(Unit obj){
