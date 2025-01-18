@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 //базовый класс для юнита, который ходит по земле//base class for a unit that walks on the ground
 public abstract class Unit:MonoBehaviour, IPointerClickHandler
 {
-    private bool MoveMode=false;
+    private bool _moveMode=false;
     protected Outline outline;
     protected Vector3 MoveCord; 
     protected EntityCfg Characteristics;
@@ -40,7 +40,7 @@ public abstract class Unit:MonoBehaviour, IPointerClickHandler
     
     public  void Move(Vector3 cord){
         //transform.position = Vector3.Lerp(transform.position, cord, 1 * Time.deltaTime);
-        MoveMode = true;
+        _moveMode = true;
         MoveCord = cord;
     }
 
@@ -54,9 +54,12 @@ public abstract class Unit:MonoBehaviour, IPointerClickHandler
         outline.OutlineMode = Outline.Mode.OutlineAll;
         outline.OutlineColor = Color.yellow;
         outline.OutlineWidth = 0.0f;
+        MoveCord = transform.position;
    }
     //public abstract void Spawn(Vector3 cord);
-    public abstract void Atack(Unit target);
+    public abstract void AtackUnit(ref Unit target);
+    public abstract void AtackBuild(ref Build target);
+
     public void Destroy(){
 
     }

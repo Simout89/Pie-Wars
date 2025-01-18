@@ -76,8 +76,8 @@ public class EntityCfg{    //настройки для отдельной сющ
 public class Config: MonoBehaviour{       //ТУТ ХРАНЯТСЯ ВСЕ НАСТРОЙКИ ДЛЯ ВСЕХ СУЩНОСТЕЙ//ALL SETTINGS FOR ALL ENTITIES ARE STORED HERE
     private string CfgPath = "D:\\cfg_v2.dat";
     //private string CfgPath = Constants.CFG_PATH;
-    private BinaryWriter writer;
-    private BinaryReader reader;
+    private BinaryWriter _writer;
+    private BinaryReader _reader;
 
     public List<EntityCfg> CfgData = new List<EntityCfg>();
 
@@ -90,24 +90,24 @@ public class Config: MonoBehaviour{       //ТУТ ХРАНЯТСЯ ВСЕ НА�
     }
     
     public void Read(){ //считает весь файл и запишет в массив//reads the entire file and writes it to an array
-        reader = new BinaryReader(File.Open(CfgPath, FileMode.OpenOrCreate));
+        _reader = new BinaryReader(File.Open(CfgPath, FileMode.OpenOrCreate));
         double[] data = new double[12]; //сюда запишем данные из файла для 1 сущности//here we will write data from the file for 1 entity
         int i=0;
-        int k=0;
+        int count=0;
         
-        while (k<9){//(reader.PeekChar() > -1){//9- колличество юнитов/зданий в конфиге
+        while (count<Constants.COUNT_ENTITY){//(reader.PeekChar() > -1){//9- колличество юнитов/зданий в конфиге
             
-            data[i]=reader.ReadDouble();
+            data[i]=_reader.ReadDouble();
             
             if(i==11){
                 CfgData.Add(new EntityCfg(data));
                 i=0;
-                k+=1;
+                count+=1;
                 continue;
             }
             i+=1;
         }
-        reader.Close();
+        _reader.Close();
         
         
     }

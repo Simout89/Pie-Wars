@@ -10,24 +10,23 @@ using UnityEngine;
 public class UnitControl: MonoBehaviour
 {
 
+    private SelectUnits _selectedUnits;
     public void MoveUnits(Vector3 cords){
         //перемещает всех выбранных юнитов в точку(можно переместить 1 юнита)
         //moves all selected units to the point (can move 1 unit)
-        foreach(Unit unit in this.GetComponent<SelectUnits>().SelectedUnist ){
+        foreach(Unit unit in _selectedUnits.SelectedUnist ){
             unit.Move(cords);
         }
     }
 
-    public void AtackUnit(Unit trg){                   //атака 1 юнита
-        //перемещает всех выбранных юнитов в точку(можно переместить 1 юнита)
-        //moves all selected units to the point (can move 1 unit)
-        foreach(Unit unit in this.GetComponent<SelectUnits>().SelectedUnist ){
-            unit.Atack(trg);
+    public void AtackUnit(ref Unit trg){                   //атака 1 юнита
+        foreach(Unit unit in _selectedUnits.SelectedUnist ){
+            unit.AtackUnit(ref trg);
         }
     }
 
-    void Update(){
-        
+    public void Start(){
+        _selectedUnits = this.GetComponent<SelectUnits>();
     }
 
 

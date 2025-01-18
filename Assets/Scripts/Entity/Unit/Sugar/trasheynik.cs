@@ -11,7 +11,11 @@ public class trasheynik:Unit
         Characteristics = GameObject.Find("EnityConfig").GetComponent<Config>().CfgData[2];
     }
 
-    public override void Atack(Unit target){
+    public override void AtackUnit(ref Unit target){
+        TypesOfAtack.AtackShogunUnit(ref target);
+    }
 
+    public override void AtackBuild(ref Build target){
+        AtackBuild(ref target);
     }
 }

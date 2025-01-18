@@ -16,8 +16,8 @@ using UnityEngine.EventSystems;
 public class MapClickHendler : MonoBehaviour, IPointerClickHandler
 {
 
-    private int Mode = Constants.MODE_MAP_DEFAULT;
-    private int EntityId = -1;//id юнита/здания которое надо заспвнить
+    private int _mode = Constants.MODE_MAP_DEFAULT;
+    private int _entityId = -1;//id юнита/здания которое надо заспвнить
     public Camera _Camera;
     
     public void OnPointerClick(UnityEngine.EventSystems.PointerEventData eventData){
@@ -36,7 +36,7 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler
         //if(Input.GetKey(KeyCode.LeftShift)){ 
             if(eventData.button==PointerEventData.InputButton.Left){
                 //Debug.Log("222222222");
-                if(Mode==Constants.MODE_MAP_WAIT_FLAG_SOLIDER | Mode==Constants.MODE_MAP_WAIT_FLAG_WORKER){
+                if(_mode==Constants.MODE_MAP_WAIT_FLAG_SOLIDER | _mode==Constants.MODE_MAP_WAIT_FLAG_WORKER){
 
                 }
                 else{
@@ -46,7 +46,7 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler
             }
         //}
         if(eventData.button==PointerEventData.InputButton.Right){
-            if(Mode==Constants.MODE_MAP_WAIT_TARGET){
+            if(_mode==Constants.MODE_MAP_WAIT_TARGET){
                 Vector3 target = GetClickPos();
                 _System.GetComponent<UnitControl>().MoveUnits(target);
             }
@@ -65,28 +65,18 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler
     }
 
     public void SetMapMode(int mode){
-        Mode = mode;
+        _mode = mode;
     }
     public void SetEntityId(int entity_id){
-        EntityId = entity_id;
+        _entityId = entity_id;
     }
 
-    void Start()
-    {
+    void Start(){
         
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-           
-        }
+    void Update(){
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-
-        }
     }
 }
