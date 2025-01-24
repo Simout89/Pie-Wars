@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 //using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,48 +14,41 @@ using UnityEngine.EventSystems;
 /// очищает список выбранных юнитов при клике пкм по карте
 /// определяет позицию для строительства здания
 /// </summary>
-public class MapClickHendler : MonoBehaviour, IPointerClickHandler
+public class MapClickHendler : MonoBehaviour, IPointerClickHandler, ISubjectMap
 {
-
-    private int _mode = Constants.MODE_MAP_DEFAULT;
-    private int _entityId = -1;//id юнита/здания которое надо заспвнить
     public Camera _Camera;
+
+    private List<IObserverMap> _observers = new();
     
     public void OnPointerClick(UnityEngine.EventSystems.PointerEventData eventData){
-        /// <summary>
-        /// лкм - получить позицию клика на карте
-        /// действия после получения клика зависят от текушего режима
-        /// режимы:
-        /// -1. режим по умолчанию
-        /// 0. режим строительства, если этот режим активен, то на месте клика будет построенно здание/заспавнен юнит
-        /// 1. режим ожидания приказа двигаться к точке
-        /// 2. режим атаки: атаковать цель на точке клика(выпустить луч, определить с каким калайдером этот луч пересекается, атаковать объект с этим калайдером)
-        /// 3. установка точки, куда будут идти рабочие юниты после спавна(можно реализовать в скрипте здания)
-        /// 4. установка точки, куда будут идти боевые юниты после спавна(можно реализовать в скрипте здания)
-        /// </summary>
-        GameObject _System = GameObject.Find("System");
-        //if(Input.GetKey(KeyCode.LeftShift)){ 
-            if(eventData.button==PointerEventData.InputButton.Left){
-                //Debug.Log("222222222");
-                if(_mode==Constants.MODE_MAP_WAIT_FLAG_SOLIDER | _mode==Constants.MODE_MAP_WAIT_FLAG_WORKER){
 
-                }
-                else{
-                    _System.GetComponent<SelectUnits>().ClearSelectedUnits();
-                    SetMapMode(Constants.MODE_MAP_DEFAULT);
-                }
-            }
-        //}
+        if(eventData.button==PointerEventData.InputButton.Left){
+            NotifyObserversAboutClickLeft();
+        }
         if(eventData.button==PointerEventData.InputButton.Right){
-            if(_mode==Constants.MODE_MAP_WAIT_TARGET){
-                Vector3 target = GetClickPos();
-                _System.GetComponent<UnitControl>().MoveUnits(target);
-            }
-                
+            NotifyObserversAboutClickRight();
         }
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    Vector3 GetClickPos(){ //определит позицию клика
+
+    public void AttachObserver(IObserverMap observer){
+        _observers.Add(observer);
+    }
+
+    public void DetachObserver(IObserverMap observer){
+     if(_observers.Contains(observer)){
+            _observers.Remove(observer);
+        }
+    }
+
+    public void NotifyObserversAboutClickLeft(){
+        foreach(IObserverMap obs in _observers){obs.ClickOnMapLeft();}
+    }
+
+    public void NotifyObserversAboutClickRight(){
+        foreach(IObserverMap obs in _observers){obs.ClickOnMapRight(GetClickPosition());}
+    }
+
+    Vector3 GetClickPosition(){ //определит позицию клика
         Vector3 pos = new();
         RaycastHit hit;
         Ray ray = _Camera.ScreenPointToRay(Input.mousePosition);
@@ -64,19 +58,5 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler
         return pos;
     }
 
-    public void SetMapMode(int mode){
-        _mode = mode;
-    }
-    public void SetEntityId(int entity_id){
-        _entityId = entity_id;
-    }
-
-    void Start(){
-        
-    }
-
-    // Update is called once per frame
-    void Update(){
-
-    }
+    
 }

@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+
 //using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -6,48 +8,58 @@ using UnityEngine.EventSystems;
 
 
 //базовый класс для юнита, который ходит по земле//base class for a unit that walks on the ground
-public abstract class Unit:MonoBehaviour, IPointerClickHandler
+public abstract class Unit:MonoBehaviour, IPointerClickHandler, ISubjectEntity
 {
-    private bool _moveMode=false;
     protected Outline outline;
     protected Vector3 MoveCord; 
     protected EntityCfg Characteristics;
+
+    private List<IObserverEntitys> _observers = new();
     public void OnPointerClick(UnityEngine.EventSystems.PointerEventData eventData){
         //для обработки клика на юнит//to handle clicks on a unit
-        //добавит его с список выбранных юнитов//will add it to the list of selected units
         if(Input.GetKey(KeyCode.LeftShift)){ //добавляет юнитов с спмсок выбранных только с зажатым LShift
             if(eventData.button==PointerEventData.InputButton.Left){
-                GameObject.Find("System").GetComponent<SelectUnits>().AddInSelectedUnit(this);
-
-                
-                outline.OutlineMode = Outline.Mode.OutlineAll;
-                outline.OutlineColor = Color.yellow;
-                outline.OutlineWidth = 5f;                  //обводка объекта
+                NotifyObserversAboutClickLeftShift();
             }
             return;
         }
         if(eventData.button==PointerEventData.InputButton.Left){
-                GameObject.Find("System").GetComponent<SelectUnits>().ClearSelectedUnits();
-                GameObject.Find("System").GetComponent<SelectUnits>().AddInSelectedUnit(this);
-                
-                outline.OutlineMode = Outline.Mode.OutlineAll;
-                outline.OutlineColor = Color.yellow;
-                outline.OutlineWidth = 5f; 
+                NotifyObserversAboutClickLeft();
         }
     }
-    //public void Start(){Debug.Log("123445");}
     
+    public void AttachObserver(IObserverEntitys observer){
+        _observers.Add(observer);
+    }
+
+    public void DetachObserver(IObserverEntitys observer){
+        if(_observers.Contains(observer)){
+            _observers.Remove(observer);
+        }
+    }
+
+    public void NotifyObserversAboutClickLeft(){
+        foreach(IObserverEntitys obs in _observers){obs.ClickOnEntitysLeft(this);}
+    }
+
+    public void NotifyObserversAboutClickLeftShift(){
+        foreach(IObserverEntitys obs in _observers){obs.ClickOnEntitysShift(this);}
+    }
     
-    public  void Move(Vector3 cord){
-        //transform.position = Vector3.Lerp(transform.position, cord, 1 * Time.deltaTime);
-        _moveMode = true;
+    public  void Move(Vector3 cord){ //юнит всегда идет к заданной точке, это метод устанавливает эту точку
         MoveCord = cord;
     }
 
-    public void DelFromSelectetUnits(){   //вызывается при удаление юнита из списка выбранных
-       outline.OutlineWidth = 0.0f; //удалит обводку
-
+    public void OffOutline(){ 
+       outline.OutlineWidth = 0.0f; //выключит обводку
     }
+    public void OnOutline(){ //включит обводку
+        outline.OutlineWidth = 5f; 
+    }
+
+    public abstract void AtackUnit(ref Unit target);
+    public abstract void AtackBuild(ref Build target);
+
    void Awake(){
         outline = gameObject.AddComponent<Outline>();
 
@@ -56,15 +68,9 @@ public abstract class Unit:MonoBehaviour, IPointerClickHandler
         outline.OutlineWidth = 0.0f;
         MoveCord = transform.position;
    }
-    //public abstract void Spawn(Vector3 cord);
-    public abstract void AtackUnit(ref Unit target);
-    public abstract void AtackBuild(ref Build target);
-
-    public void Destroy(){
-
-    }
+    
 
     public void Update(){
-        transform.position = Vector3.Lerp(transform.position, MoveCord,  Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, MoveCord, (float)(Characteristics.SP*Time.deltaTime));
     }
 }

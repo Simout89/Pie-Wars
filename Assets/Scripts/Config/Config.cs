@@ -10,18 +10,18 @@ using System.Collections.Generic;
 
 
 public class EntityCfg{    //настройки для отдельной сющбности // settings for a separate entity
-    private double HP;
-    private double AR;
-    private double EN;
-    private double SP;
-    private double VR;
-    private double AT;
-    private double ATS;
-    private double AT_RANGE;
-    private double COST_JR;
-    private double COST_CK;
-    private double SCORE;
-    private double TIME_SPAWN;
+    public double HP;
+    public double AR;
+    public double EN;
+    public double SP;
+    public double VR;
+    public double AT;
+    public double ATS;
+    public double AT_RANGE;
+    public double COST_JR;
+    public double COST_CK;
+    public double SCORE;
+    public double TIME_SPAWN;
     public EntityCfg(double[] data){
         HP = data[0];
         AR = data[1];
