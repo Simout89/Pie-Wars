@@ -14,6 +14,8 @@ using  System.Collections.Generic;
 
 public class GlobalGameDataModel: MonoBehaviour{
 
+
+    public int FractionId;
     public HashSet<Unit> AllUnits = new();
     public HashSet<Build> AllBuilds = new();
 }
