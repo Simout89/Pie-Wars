@@ -30,11 +30,13 @@ public class SelectedUnitsController : MonoBehaviour, IObserverEntitys, IObserve
 
     public void ClickOnMapLeft()
     {
-        _model.ClearSelectedUnits();
+        if(isSelecting!=true){
+            _model.ClearSelectedUnits();
+        }
     }
 
     public void ClickOnMapRight(Vector3 position){ //в данный момент не реализуется
-
+        //Debug.Log("Click on map");
     }
 
     public void Initialization(SelectedUnitsView view, SelectedUnitsModel model, MapClickHendler mapClickHendler){
