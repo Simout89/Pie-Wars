@@ -6,8 +6,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 
-
-
 /// <summary>
 /// отвечает за обработку кликов по карте
 /// считывает точку, куда должны двигаться юниты
@@ -17,8 +15,11 @@ using UnityEngine.EventSystems;
 public class MapClickHendler : MonoBehaviour, IPointerClickHandler, ISubjectMap
 {
     public Camera _Camera;
-
     private List<IObserverMap> _observers = new();
+
+
+
+
     
     public void OnPointerClick(UnityEngine.EventSystems.PointerEventData eventData){
 
@@ -30,11 +31,11 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler, ISubjectMap
         }
     }
 
-    public void AttachObserver(IObserverMap observer){
+    public void AttachObserverMap(IObserverMap observer){
         _observers.Add(observer);
     }
 
-    public void DetachObserver(IObserverMap observer){
+    public void DetachObserverMap(IObserverMap observer){
      if(_observers.Contains(observer)){
             _observers.Remove(observer);
         }
@@ -58,5 +59,4 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler, ISubjectMap
         return pos;
     }
 
-    
 }

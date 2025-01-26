@@ -8,13 +8,13 @@ using UnityEngine.EventSystems;
 
 
 //базовый класс для юнита, который ходит по земле//base class for a unit that walks on the ground
-public abstract class Unit:MonoBehaviour, IPointerClickHandler, ISubjectEntity
+public abstract class Unit:MonoBehaviour, IPointerClickHandler, ISubjectUnitsClick
 {
     protected Outline outline;
     protected Vector3 MoveCord; 
     protected EntityCfg Characteristics;
 
-    private List<IObserverEntitys> _observers = new();
+    private List<IObserverUnitsClick> _observers = new();
     public void OnPointerClick(UnityEngine.EventSystems.PointerEventData eventData){
         //для обработки клика на юнит//to handle clicks on a unit
         if(Input.GetKey(KeyCode.LeftShift)){ //добавляет юнитов с спмсок выбранных только с зажатым LShift
@@ -28,22 +28,22 @@ public abstract class Unit:MonoBehaviour, IPointerClickHandler, ISubjectEntity
         }
     }
     
-    public void AttachObserver(IObserverEntitys observer){
+    public void AttachObserverUnitsClick(IObserverUnitsClick observer){
         _observers.Add(observer);
     }
 
-    public void DetachObserver(IObserverEntitys observer){
+    public void DetachObserverUnitsClick(IObserverUnitsClick observer){
         if(_observers.Contains(observer)){
             _observers.Remove(observer);
         }
     }
 
     public void NotifyObserversAboutClickLeft(){
-        foreach(IObserverEntitys obs in _observers){obs.ClickOnEntitysLeft(this);}
+        foreach(IObserverUnitsClick obs in _observers){obs.ClickOnUnitLeft(this);}
     }
 
     public void NotifyObserversAboutClickLeftShift(){
-        foreach(IObserverEntitys obs in _observers){obs.ClickOnEntitysShift(this);}
+        foreach(IObserverUnitsClick obs in _observers){obs.ClickOnUnitShift(this);}
     }
     
     public  void Move(Vector3 cord){ //юнит всегда идет к заданной точке, это метод устанавливает эту точку
@@ -67,6 +67,8 @@ public abstract class Unit:MonoBehaviour, IPointerClickHandler, ISubjectEntity
         outline.OutlineColor = Color.yellow;
         outline.OutlineWidth = 0.0f;
         MoveCord = transform.position;
+
+        GameObject.Find("CONTROLLERS").GetComponent<SelectedUnitsController>().SubscribeUnitsClick(this);
    }
     
 
