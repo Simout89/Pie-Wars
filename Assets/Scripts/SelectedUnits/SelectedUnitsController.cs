@@ -39,7 +39,6 @@ public class SelectedUnitsController : MonoBehaviour, IObserverUnitsClick, IObse
 
     public void ClickOnUnitShift(object obj)
     {
-        Debug.Log("Left+shift");
         Unit unt = (Unit)obj;
         _model.AddSelectedUnit(unt);
     }
@@ -67,18 +66,21 @@ public class SelectedUnitsController : MonoBehaviour, IObserverUnitsClick, IObse
     }
 
     private void ClearUnitsInRect(){
-        //Debug.Log("Clear rect");
         foreach(Unit unt in unitsInRect){
             unt.OffOutline();
         }
         unitsInRect.Clear();
     }
     private void AddUnitsInRect(Unit unt){
-        //Debug.Log("Add in rect");
         if(this.unitsInRect.Contains(unt)){
 
         }else{
             unitsInRect.Add(unt);
+            unt.OnOutline();
+        }
+    }
+    public void OnOunlineUnitsInRect(){
+        foreach(Unit unt in unitsInRect){
             unt.OnOutline();
         }
     }
@@ -104,7 +106,7 @@ public class SelectedUnitsController : MonoBehaviour, IObserverUnitsClick, IObse
 
             if(startPoint!=endPoint){
                 _model.SetNewSelectedUnitList(unitsInRect);
-                //this.ClearUnitsInRect();
+                OnOunlineUnitsInRect();
             }
           
         }

@@ -7,6 +7,7 @@ public class SelectedUnitsModel : MonoBehaviour
     /// вся логика
     /// </summary>
 
+    [SerializeField] private HistorySelectedData _historySelectedData;
 
     [SerializeField] private List<Unit> SelectedUnits = new();//выбраные сейчас юниты
     [SerializeField] private HashSet<Unit> SelectedBuilds = new();//выбраные сейчас зданий
@@ -20,35 +21,36 @@ public class SelectedUnitsModel : MonoBehaviour
         }else{
             SelectedUnits.Add(unt);
             unt.OnOutline();
+            _historySelectedData.NewRecordInHistory(SelectedUnits);
         }
     }
     public void AddNewSelectedUnit(Unit unt){
-
-        foreach(Unit unit in SelectedUnits){
-            unit.OffOutline();
-        }
         ClearSelectedUnits();
         SelectedUnits.Add(unt);
-        //historyActionController.AssSelectedUnitsInHistory(SelectedUnits);
-        unt.OnOutline();
+
+        foreach(Unit unit in SelectedUnits){
+            unit.OnOutline();
+        }
+        _historySelectedData.NewRecordInHistory(SelectedUnits);
     }
 
     public void SetNewSelectedUnitList(List<Unit> unitList){            //при выделение новых юнитов
-        //Debug.Log(unitList.Count);
+        this.ClearSelectedUnits();
         this.SelectedUnits = new(unitList);
-        //historyActionController.AssSelectedUnitsInHistory(SelectedUnits);
-        Debug.Log("Set");
+        _historySelectedData.NewRecordInHistory(SelectedUnits);
     }
 
      public void SetOldSelectedUnitList(List<Unit> unitList){            //при выборе юнитов, которые были выделены ранее
-        
-        this.SelectedUnits = unitList;
-
-        
-        foreach(Unit unt in unitList){
-            unt.OnOutline();
+        this.ClearSelectedUnits();
+        if(unitList.Count == 0){
+            Debug.Log("null");
+        }else{
+            Debug.Log("Not null");
+            this.SelectedUnits = new(unitList);
+            foreach(Unit unt in SelectedUnits){
+                unt.OnOutline();
+            }
         }
-        
     }
 
     
@@ -59,7 +61,7 @@ public class SelectedUnitsModel : MonoBehaviour
             unit.OffOutline();
         }
         SelectedUnits.Clear();
-        Debug.Log("Clear");
+
     }
 
 }
