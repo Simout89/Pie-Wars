@@ -9,7 +9,7 @@ public class SelectedUnitsModel : MonoBehaviour
 
     [SerializeField] private HistorySelectedData _historySelectedData;
 
-    [SerializeField] private List<Unit> SelectedUnits = new();//выбраные сейчас юниты
+    [SerializeField] public List<Unit> SelectedUnits = new();//выбраные сейчас юниты
     [SerializeField] private HashSet<Unit> SelectedBuilds = new();//выбраные сейчас зданий
 
 
@@ -42,7 +42,7 @@ public class SelectedUnitsModel : MonoBehaviour
 
      public void SetOldSelectedUnitList(List<Unit> unitList){            //при выборе юнитов, которые были выделены ранее
         this.ClearSelectedUnits();
-        if(unitList.Count == 0){
+        if(unitList==null || unitList.Count == 0){
             Debug.Log("null");
         }else{
             Debug.Log("Not null");

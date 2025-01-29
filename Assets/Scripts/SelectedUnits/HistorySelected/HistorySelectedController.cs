@@ -6,7 +6,7 @@ public class HistorySelectedController : MonoBehaviour
 
     [SerializeField] private HistorySelectedData _data;
     [SerializeField] private SelectedUnitsModel _selectedUnitsModel;
-
+ 
 
     private void OnEnable(){
         KeyBoardInput.ActionPresentCtrlZ += SetSelectedUnitsFromHistiry;
