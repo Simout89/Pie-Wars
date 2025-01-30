@@ -12,7 +12,9 @@ public abstract class Unit:MonoBehaviour, IPointerClickHandler, ISubjectUnitsCli
 {
     protected Outline outline;
     protected Vector3 MoveCord; 
-    protected EntityCfg Characteristics;
+    public EntityCfg Characteristics;
+
+    protected List<Command> _commandList = new();
 
     private List<IObserverUnitsClick> _observers = new();
     public void OnPointerClick(UnityEngine.EventSystems.PointerEventData eventData){
@@ -46,9 +48,6 @@ public abstract class Unit:MonoBehaviour, IPointerClickHandler, ISubjectUnitsCli
         foreach(IObserverUnitsClick obs in _observers){obs.ClickOnUnitShift(this);}
     }
     
-    public  void Move(Vector3 cord){ //юнит всегда идет к заданной точке, это метод устанавливает эту точку
-        MoveCord = cord;
-    }
 
     public void OffOutline(){ 
        outline.OutlineWidth = 0.0f; //выключит обводку
@@ -57,10 +56,16 @@ public abstract class Unit:MonoBehaviour, IPointerClickHandler, ISubjectUnitsCli
         outline.OutlineWidth = 5f; 
     }
 
-    public abstract void AtackUnit(ref Unit target);
-    public abstract void AtackBuild(ref Build target);
+    public void AddCommand(Command command){
+        _commandList.Add(command);
+    }
+    public void ClearCommandList(){
+        _commandList.Clear();
+    }
 
-   void Awake(){
+
+
+    void Awake(){
         outline = gameObject.AddComponent<Outline>();
 
         outline.OutlineMode = Outline.Mode.OutlineAll;
@@ -69,10 +74,17 @@ public abstract class Unit:MonoBehaviour, IPointerClickHandler, ISubjectUnitsCli
         MoveCord = transform.position;
 
         GameObject.Find("CONTROLLERS").GetComponent<SelectedUnitsController>().SubscribeUnitsClick(this);
-   }
-    
-
-    public void Update(){
-        transform.position = Vector3.MoveTowards(transform.position, MoveCord, (float)(Characteristics.SP*Time.deltaTime));
     }
+
+    public void Update(){//постоянно выполняет комманды
+
+        foreach(Command command in _commandList){
+            if(command.Execute()){ //если команда исполнена
+                _commandList.Remove(command);
+            }
+        }
+    }
+
+   
+
 }
