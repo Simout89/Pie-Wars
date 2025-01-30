@@ -6,16 +6,16 @@ public class HistorySelectedData : MonoBehaviour
   
     [SerializeField] private HistorySelectedStack HistoryData= new();
 
-    public void NewRecordInHistory(List<Unit> units_list){
-        if(units_list.Count == 0){
+    public void NewRecordInHistory(List<IEntity> entitys_list){
+        if(entitys_list.Count == 0){
             return;
         }else{
-            HistoryData.Add(units_list);
+            HistoryData.Add(entitys_list);
         }
         
     }
 
-    public List<Unit> GetLastRecord(){
+    public List<IEntity> GetLastRecord(){
         
         return HistoryData.Get();
     }

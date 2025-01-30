@@ -4,7 +4,7 @@ using UnityEngine;
 public class GroupSistemController : MonoBehaviour
 {
     [SerializeField] private GroupSistemData _groupSisteData;
-    [SerializeField] private SelectedUnitsModel _selectedUnitsModel;
+    [SerializeField] private SelectedEntitysModel _selectedUnitsModel;
  
 
      private void OnEnable(){
@@ -19,7 +19,7 @@ public class GroupSistemController : MonoBehaviour
     
     public void NewGroup(int index){
         Debug.Log("New group");
-        List<Unit> group = _selectedUnitsModel.SelectedUnits;
+        List<IEntity> group = _selectedUnitsModel.SelectedEntitys;
         _groupSisteData.SetGroup(index-1, group);
     }
     

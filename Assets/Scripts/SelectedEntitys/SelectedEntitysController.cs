@@ -1,18 +1,19 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Xml;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SelectedUnitsController : MonoBehaviour, IObserverUnitsClick, IObserverMap
+public class SelectedEntitysController : MonoBehaviour, IObserverEntityClick, IObserverMap
 {
     /// <summary>
     /// принимает и обрабатывает пользовательский ввод
     /// </summary>
     
-    public SelectedUnitsView _view;
-    public SelectedUnitsModel _model;
+    public SelectedEntitysView _view;
+    public SelectedEntitysModel _model;
 
-    private List<Unit> unitsInRect = new();
+    private List<IEntity> unitsInRect = new();
 
     [SerializeField] private UIService uiService;
     [SerializeField] private ObjectInRect objectInRect;
@@ -30,17 +31,17 @@ public class SelectedUnitsController : MonoBehaviour, IObserverUnitsClick, IObse
     [SerializeField] private Vector2 endPoint;
 
     
-    public void ClickOnUnitLeft(object obj)
+    public void ClickOnEntityLeft(object obj)
     {
-        Unit unt = (Unit)obj;
-        _model.AddNewSelectedUnit(unt);
+        IEntity ent = (IEntity)obj;
+        _model.AddNewSelectedUnit(ent);
         
     }
 
-    public void ClickOnUnitShift(object obj)
+    public void ClickOnEntityLeftShift(object obj)
     {
-        Unit unt = (Unit)obj;
-        _model.AddSelectedUnit(unt);
+        IEntity ent = (IEntity)obj;
+        _model.AddSelectedUnit(ent);
     }
 
     public void ClickOnMapLeft()    
@@ -55,33 +56,28 @@ public class SelectedUnitsController : MonoBehaviour, IObserverUnitsClick, IObse
     public void ClickOnMapRight(Vector3 position){ //в данный момент не реализуется
     }
 
-    public void SubscribeUnitsClick(ISubjectUnitsClick unt){      //подпишится на событие клик по юниту/
-        unt.AttachObserverUnitsClick(this);
+    public void SubscribeEntitysClick(ISubjecEntityClick ent){      //подпишится на событие клик по юниту/
+        ent.AttachObserverUnitsClick(this);
     }
 
-    public void Initialization(SelectedUnitsView view, SelectedUnitsModel model, MapClickHendler mapClickHendler){
-        _view = view;
-        _model = model;
-        mapClickHendler.AttachObserverMap(this);
-    }
 
     private void ClearUnitsInRect(){
-        foreach(Unit unt in unitsInRect){
+        foreach(IEntity unt in unitsInRect){
             unt.OffOutline();
         }
         unitsInRect.Clear();
     }
-    private void AddUnitsInRect(Unit unt){
-        if(this.unitsInRect.Contains(unt)){
+    private void AddEntityInRect(IEntity ent){
+        if(this.unitsInRect.Contains(ent)){
 
         }else{
-            unitsInRect.Add(unt);
-            unt.OnOutline();
+            unitsInRect.Add(ent);
+            ent.OnOutline();
         }
     }
     public void OnOunlineUnitsInRect(){
-        foreach(Unit unt in unitsInRect){
-            unt.OnOutline();
+        foreach(IEntity ent in unitsInRect){
+            ent.OnOutline();
         }
     }
 
@@ -118,10 +114,10 @@ public class SelectedUnitsController : MonoBehaviour, IObserverUnitsClick, IObse
             this._view.SetVisible(true);
             this.ClearUnitsInRect();
 
-            foreach(Unit unit in objectsPoolData.AllUnitsInCameraSpace){
+            foreach(IEntity entity in objectsPoolData.AllUnitsInCameraSpace){
 
-                if(objectInRect.PointInRect(unit.transform.position, startPoint, endPoint)){
-                    AddUnitsInRect(unit);
+                if(objectInRect.PointInRect(entity._transformr.position, startPoint, endPoint)){
+                    this.AddEntityInRect(entity);
                 }//else{
                     
                     //if(this.unitsInRect.Contains(unit)){

@@ -5,9 +5,9 @@
 /// </summary>
 
 
-public interface ISubjectUnitsClick{
-    public void AttachObserverUnitsClick(IObserverUnitsClick observer);//добавить слушателя
-    public void DetachObserverUnitsClick(IObserverUnitsClick observer);//убрать слушателя
+public interface ISubjecEntityClick{
+    public void AttachObserverUnitsClick(IObserverEntityClick observer);//добавить слушателя
+    public void DetachObserverUnitsClick(IObserverEntityClick observer);//убрать слушателя
     public void NotifyObserversAboutClickLeft();//уведомить всех о клике ЛКМ
     public void NotifyObserversAboutClickLeftShift();//уведомить всех о клике ЛКМ+Sgift
 }

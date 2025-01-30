@@ -6,9 +6,9 @@ public class GroupSistemData : MonoBehaviour
 
 
     private const int _maxGroupsCount = Constants.UNITS_GROUPS_COUNT;
-    private List<Unit>[] _groups = new List<Unit>[_maxGroupsCount];
+    private List<IEntity>[] _groups = new List<IEntity>[_maxGroupsCount];
 
-    public void SetGroup(int index, List<Unit> group){
+    public void SetGroup(int index, List<IEntity> group){
         if(index<_maxGroupsCount && index>=0){
             _groups[index] = new(group);
 
@@ -17,7 +17,7 @@ public class GroupSistemData : MonoBehaviour
         }
     }
 
-    public List<Unit>GetGroup(int index){
+    public List<IEntity>GetGroup(int index){
 
         return _groups[index];
     }
