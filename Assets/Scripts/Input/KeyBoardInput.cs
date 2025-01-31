@@ -27,7 +27,6 @@ public class KeyBoardInput : MonoBehaviour
         }
         if (ctrIsActive && Input.GetKeyUp(KeyCode.Z)){
             ActionPresentCtrlZ?.Invoke();
-            Debug.Log("Action active");
         }
 
         if (ctrIsActive==false && Input.GetKeyUp(KeyCode.Alpha1)){

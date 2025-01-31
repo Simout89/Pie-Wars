@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnterPointExampleScene : MonoBehaviour
+public class EntitysControllPresent : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

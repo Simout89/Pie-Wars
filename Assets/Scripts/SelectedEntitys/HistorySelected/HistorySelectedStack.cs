@@ -6,20 +6,20 @@ using UnityEngine;
 public class HistorySelectedStack
 {
 
-   [SerializeField]  private List<Unit>[] _items;
+   [SerializeField]  private List<IEntity>[] _items;
     [SerializeField]private int _count=0;//текущее кол-во элементов
     public const int _maxCount  = Constants.HISTORY_SELECTED_UNITS;
     private bool _work = false;
 
     public HistorySelectedStack(){
-        _items = new List<Unit>[_maxCount];
-        _count=0;
+        _items = new List<IEntity>[_maxCount];
+        _count=-1;
     }
 
 
-    public void Add(List<Unit> item){
-        
-        if (_count == _items.Length){
+    public void Add(List<IEntity> item){
+        Debug.Log(_items.Length);
+        if (_count == _items.Length-1){
             _items[_count-1] = new(item);
             Debug.Log(_items[_count-1].Count);
 
@@ -29,14 +29,13 @@ public class HistorySelectedStack
             Debug.Log(_items[_count].Count);
         }
     }
-    public List<Unit> Get(){
+    public List<IEntity> Get(){
 
         if(this._count == 0){
-            return new List<Unit>();
+            return new List<IEntity>();
         }else{
-            Debug.Log(1111111);
-            List<Unit> item = _items[_count];
-            _items[_count] = default(List<Unit>); // сбрасываем ссылку
+            List<IEntity> item = _items[_count];
+            _items[_count] = default(List<IEntity>); // сбрасываем ссылку
             Debug.Log(item.Count);
             _count-=1;
             return item;

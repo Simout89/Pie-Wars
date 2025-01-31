@@ -1,0 +1,11 @@
+using System;
+
+/// <summary>
+/// только для тех, кто наблюдает за кликами по юнитам
+/// </summary>
+
+
+public interface IObserverEntityClick{
+    public void ClickOnEntityLeft(Object obj);//функция, которая вызывается при клике ЛКМ на юнита/здание
+    public void ClickOnEntityLeftShift(Object obj);//функция, которая вызывается при клике на ЛКМ+Shift на юнита/здание
+}

@@ -1,7 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
 
-public class SelectedUnitsView : MonoBehaviour
+public class SelectedEntitysView : MonoBehaviour
 {
     
     private RectTransform _rectTransform;
