@@ -11,7 +11,6 @@ using UnityEngine;
 
 public class UnitsController : MonoBehaviour
 {
-    [SerializeField] private SelectedEntitysModel _selectedUnitsModel;
 
     
     public void GiveCommand(Command command){       //отправит всем выделенным юнитам комманду
