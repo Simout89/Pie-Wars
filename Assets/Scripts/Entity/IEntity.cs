@@ -7,7 +7,8 @@ using UnityEngine.EventSystems;
 public interface IEntity: ISubjecEntityClick, IPointerClickHandler
 {
 
-    Transform _transformr { get;}
+    Transform transform { get;}
+    EntityCfg _characteristics{ get;}
     abstract bool ExecuteCommand(Command command);
     abstract void AddCommand(Command command);
     abstract void ClearCommandList();

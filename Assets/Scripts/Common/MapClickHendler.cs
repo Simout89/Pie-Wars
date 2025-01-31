@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-//using System.Numerics;
+
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -17,6 +17,8 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler, ISubjectMap
     public Camera _Camera;
     private List<IObserverMap> _observers = new();
 
+    public static event Action ClickOnMapRight;
+
 
 
 
@@ -28,6 +30,7 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler, ISubjectMap
         }
         if(eventData.button==PointerEventData.InputButton.Right){
             NotifyObserversAboutClickRight();
+            ClickOnMapRight?.Invoke();
         }
     }
 

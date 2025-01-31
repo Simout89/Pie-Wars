@@ -18,8 +18,12 @@ public abstract class Unit:MonoBehaviour, IEntity
 
     protected List<Command> _commandList = new();
 
-    public Transform _transformr { 
+    public Transform transformr { 
         get {return transform;}
+       
+    }
+    public EntityCfg _characteristics { 
+        get {return Characteristics;}
        
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveCommand : Command
 {
-    public MoveCommand(Unit unit, object target) : base(unit, target)
+    public MoveCommand(IEntity ent, object target) : base(ent, target)
     {
     }
 
@@ -13,10 +13,10 @@ public class MoveCommand : Command
         bool isMoveig = true;
         Vector3 target = (Vector3)_target;
         while(isMoveig){
-            if(_unit.transform.position == target){
+            if(_entity.transform.position == target){
                 isMoveig = false; //юнит достиг точки
-            }else if(_unit.transform.position != target){
-                _unit.transform.position = Vector3.MoveTowards(_unit.transform.position, target, (float)(_unit.Characteristics.SP*Time.deltaTime));
+            }else if(_entity.transform.position != target){
+                _entity.transform.position = Vector3.MoveTowards(_entity.transform.position, target, (float)(_entity._characteristics.SP*Time.deltaTime));
             }
         }
         return true;//комманда завершилавсь

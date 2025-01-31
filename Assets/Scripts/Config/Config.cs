@@ -37,37 +37,7 @@ public class EntityCfg{    //настройки для отдельной сющ
         TIME_SPAWN = data[11];
     }
 
-    public double[] getAll(){    
-            return new double[] { this.HP, this.AR, this.EN, this.SP, this.VR, this.AT, this.ATS, this.AT_RANGE, this.COST_JR, this.COST_CK,this.SCORE, this.TIME_SPAWN };
-    }
-     public void Damage(double dmg)
-        {           
-            dmg = dmg * 0.1 * this.AR;
-            this.HP -= dmg;
-        }
-        public void DamageSugar(double dmg)              
-        {
-            if (dmg <= this.AR)
-            {
-                this.AR -= dmg;
-            }
-            else
-            {
-                dmg -= this.AR;
-                this.AR = 0;
-                this.HP -= dmg;
-            }
-        }
 
-        public void EnRegen()
-        {           
-            this.EN += Constants.EN_REGEN;
-        }
-
-        public void Change_EN(int en)
-        {            
-            this.EN -= en;
-        }
 }
 
 

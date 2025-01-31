@@ -5,7 +5,7 @@ public class HistorySelectedController : MonoBehaviour
 {
 
     [SerializeField] private HistorySelectedData _data;
-    [SerializeField] private SelectedEntitysModel _selectedUnitsModel;
+    [SerializeField] private SelectedEntitysModel _selectedEntitysModel;
  
 
     private void OnEnable(){
@@ -18,7 +18,7 @@ public class HistorySelectedController : MonoBehaviour
 
     public void SetSelectedUnitsFromHistiry(){
 
-        _selectedUnitsModel.SetOldSelectedUnitList(_data.GetLastRecord());
+        _selectedEntitysModel.SetOldSelectedUnitList(_data.GetLastRecord());
      
        
     }

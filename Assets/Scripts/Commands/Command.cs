@@ -13,19 +13,16 @@ using UnityEngine.EventSystems;
 
 public abstract class Command
 {
-    protected Unit _unit;
+    protected IEntity _entity;
     protected object _target;
     private Unit unt;
 
-    public Command(Unit unit, object target){
-        this._unit = unit;
+    public Command(IEntity ent, object target){
+        this._entity = ent;
         this._target = target;
     }
 
-    protected Command(Unit unt)
-    {
-        this.unt = unt;
-    }
+   
 
     public abstract bool Execute(); //выполнить комманду
     public abstract void Undo(); //отмена команды

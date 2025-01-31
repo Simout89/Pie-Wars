@@ -116,7 +116,7 @@ public class SelectedEntitysController : MonoBehaviour, IObserverEntityClick, IO
 
             foreach(IEntity entity in objectsPoolData.AllUnitsInCameraSpace){
 
-                if(objectInRect.PointInRect(entity._transformr.position, startPoint, endPoint)){
+                if(objectInRect.PointInRect(entity.transform.position, startPoint, endPoint)){
                     this.AddEntityInRect(entity);
                 }//else{
                     

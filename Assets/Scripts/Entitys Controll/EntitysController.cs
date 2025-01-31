@@ -9,14 +9,23 @@ using UnityEngine;
 
 
 
-public class UnitsController : MonoBehaviour
+public class EntitysControllModel : MonoBehaviour
 {
+    [SerializeField] private SelectedEntitysModel _selectedEntitysModel;
+    [SerializeField] private ICommandFabrica[] _commandsFabricsv = new ICommandFabrica[12];//содержит в себе объекты, которые создают комманды
 
-    
-    public void GiveCommand(Command command){       //отправит всем выделенным юнитам комманду
 
-        
+
+
+    void CreateCommand(int buttonId){ //создаст запрошенную комманд
+
+    }
+    public void GiveCommand(int buttonId){       //очистит список комманд у выделенных юнитов и добавит им новую
     
+    }
+
+    public void AddCommand(int buttonId){        //добавит к уже имеющимся командам новую
+
     }
 
 
