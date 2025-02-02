@@ -1,16 +1,14 @@
 using UnityEngine;
 
+/// <summary>
+/// при выборе новых юнитов вид кнопок сбрасывается
+/// т.е анимация кд уходит
+/// при выборе 1 юнита кд на скиллы узнается у него
+/// </summary>
+
+
+
 public class EntityControllView : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

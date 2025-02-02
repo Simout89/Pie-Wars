@@ -118,14 +118,7 @@ public class SelectedEntitysController : MonoBehaviour, IObserverEntityClick, IO
 
                 if(objectInRect.PointInRect(entity.transform.position, startPoint, endPoint)){
                     this.AddEntityInRect(entity);
-                }//else{
-                    
-                    //if(this.unitsInRect.Contains(unit)){
-                            //unitsInRect.Remove(unit);
-                            //unit.OffOutline();
-                    //}
-                    
-                //}
+                }
             }
 
 

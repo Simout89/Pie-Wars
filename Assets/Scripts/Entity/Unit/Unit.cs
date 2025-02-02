@@ -16,7 +16,7 @@ public abstract class Unit:MonoBehaviour, IEntity
 
     private List<IObserverEntityClick> _observers = new();
 
-    protected List<Command> _commandList = new();
+    protected List<ICommand> _commandList = new();
 
     public Transform transformr { 
         get {return transform;}
@@ -44,11 +44,11 @@ public abstract class Unit:MonoBehaviour, IEntity
 
     }
 
-    public bool ExecuteCommand(Command command){
+    public bool ExecuteCommand(ICommand command){
         return command.Execute();
     }
 
-    public void AddCommand(Command command){
+    public void AddCommand(ICommand command){
         _commandList.Add(command);
     }
 

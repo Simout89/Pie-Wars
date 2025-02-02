@@ -9,8 +9,8 @@ public interface IEntity: ISubjecEntityClick, IPointerClickHandler
 
     Transform transform { get;}
     EntityCfg _characteristics{ get;}
-    abstract bool ExecuteCommand(Command command);
-    abstract void AddCommand(Command command);
+    abstract bool ExecuteCommand(ICommand command);
+    abstract void AddCommand(ICommand command);
     abstract void ClearCommandList();
 
     abstract void AddOutline();

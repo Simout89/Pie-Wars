@@ -12,7 +12,7 @@ using UnityEngine;
 public class EntitysControllModel : MonoBehaviour
 {
     [SerializeField] private SelectedEntitysModel _selectedEntitysModel;
-    [SerializeField] private ICommandFabrica[] _commandsFabricsv = new ICommandFabrica[12];//содержит в себе объекты, которые создают комманды
+    [SerializeField] private ICommandFabrica[] _commandsFabricsv = new ICommandFabrica[15];//содержит в себе объекты, которые создают комманды
 
 
 
