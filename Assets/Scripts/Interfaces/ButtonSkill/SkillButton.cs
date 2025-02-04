@@ -7,61 +7,53 @@ using UnityEngine.UI;
 
 public class SkillButton: MonoBehaviour
 {
-    [SerializeField] private ISkillButtonState _buttonState;
     [SerializeField] private ICommandFabrica _commandFabrica;
 
-    [SerializeField] private ISkillButtonState _unActiveState; //нелзя нажать stateID 0 
-    [SerializeField] private ISkillButtonState _activeState; //можно нажать  stateID 1
-    
-    [SerializeField] private ISkillButtonState _coldownState;    //в кд  stateID 2
+
+    [SerializeField] bool isActive = true;
+    [SerializeField] Sprite _baseSprite;
 
     private Image _image;
-
-
-    [SerializeField] Sprite _spriteUnActiveState;
-    [SerializeField] Sprite _spriteActiveState;
-    [SerializeField] Sprite _spriteColdownState;
+   
 
     private float _coldown; //кд кнопки
     private float ActualColdown;   //текущее кд кнопки
 
 
-    private int k=0;
-
-    public void SwapState(int state_id){
-        switch(state_id){
-            case 0:
-                this._buttonState = this._unActiveState;
-                break;
-            case 1:
-                this._buttonState = this._activeState;
-                break;
-            case 2:
-                this._buttonState = this._coldownState;
-                break;
-        }
+    private void ShowActive(){
+        this._image.color = Color.white;
+    }
+    private void ShowUnActive(){
+        this._image.color = Color.gray;
     }
 
-    public void Show(){
-        this._buttonState.ShowEffect();
+    private void ShowColdawn(){
+        this._image.color = Color.red;
     }
 
 
     public void ClickOnButton(){
-        ICommand output = null;
         Debug.Log("Click on button");
+
+        if(isActive){
+            
+            //перевести кнопку в кд если было созданна комманда
+            this.isActive = false;
+            this.ActualColdown = this._coldown;
+            this.ShowColdawn();
+
+        }else{
+            Debug.Log("Button in unActive");
+        }
+
 
     }
 
     public void Awake(){
 
         this._image = this.GetComponent<Image>();
+        this._coldown = 5;
 
-        this._activeState = null;
-        this._unActiveState = null;
-        this._coldownState = null;
-
-        this.SwapState(0);
     }
 
     public void Update(){
@@ -69,7 +61,9 @@ public class SkillButton: MonoBehaviour
             this.ActualColdown-=Time.deltaTime;
             if(this.ActualColdown<=0){
                 this.ActualColdown = 0;
-                this.SwapState(1);
+                this.isActive = true;
+                this.ShowActive();
+                
             }
         }
     }
