@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TestSkillUi : ACommandButton
+public class TestSkillUi 
 {
 
 }

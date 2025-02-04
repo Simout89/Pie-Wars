@@ -1,7 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
 
-public interface ACommandButtonState {
+public interface ISkillButtonState {
    abstract void ShowEffect();
 
 }

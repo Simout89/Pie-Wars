@@ -5,15 +5,15 @@ using UnityEngine.UI;
 
 
 
-public class ACommandButton: MonoBehaviour
+public class SkillButton: MonoBehaviour
 {
-    [SerializeField] private ACommandButtonState _buttonState;
+    [SerializeField] private ISkillButtonState _buttonState;
     [SerializeField] private ICommandFabrica _commandFabrica;
 
-    [SerializeField] private ACommandButtonState _unActiveState; //нелзя нажать stateID 0 
-    [SerializeField] private ACommandButtonState _activeState; //можно нажать  stateID 1
+    [SerializeField] private ISkillButtonState _unActiveState; //нелзя нажать stateID 0 
+    [SerializeField] private ISkillButtonState _activeState; //можно нажать  stateID 1
     
-    [SerializeField] private ACommandButtonState _coldownState;    //в кд  stateID 2
+    [SerializeField] private ISkillButtonState _coldownState;    //в кд  stateID 2
 
     private Image _image;
 
@@ -51,14 +51,6 @@ public class ACommandButton: MonoBehaviour
         ICommand output = null;
         Debug.Log("Click on button");
 
-
-
-        //this.GetComponent<Image>().sprite = ImageOne;
-        //if(this._commandFabrica.CreateCommand(output)){//комманда создана
-            //this.ActualColdown = this._coldown;
-            //this.SwapState(2);
-        //}
-        //return output;
     }
 
     public void Awake(){
