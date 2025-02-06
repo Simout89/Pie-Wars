@@ -39,16 +39,16 @@ Shader "Hidden/RefreshShader"
             {
           
 
-                float dotProduct = dot(vecA, vecB);
+                float dotVec = dot(vecA, vecB);
 
                 // Векторное произведение 
-                float crossProduct = vecA.x * vecB.y - vecA.y * vecB.x;
+                float crossVec = vecA.x * vecB.y - vecA.y * vecB.x;
 
                 // Угол в радианах
-                float angleRadians = acos(dotProduct);
+                float angleRadians = acos(dotVec);
 
                 // Определение направления
-                if (crossProduct < 0)
+                if (crossVec < 0)
                 {
                     // Угол по часовой стрелке
                     angleRadians = 2 * 3.14159265359 - angleRadians;
@@ -73,7 +73,6 @@ Shader "Hidden/RefreshShader"
             fixed4 frag (v2f i) : SV_Target
             {
                 
-                // Получаем цвет из текстуры
                 fixed4 originalColor = tex2D(_MainTex, i.uv);
 
                 // Вычисляем яркость
