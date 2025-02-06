@@ -7,10 +7,14 @@ using UnityEngine.UI;
 
 public class SkillButton: MonoBehaviour
 {
+
+    [SerializeField] private EntitysController _entitysController;
+
     [SerializeField] private ICommandFabrica _commandFabrica;
 
 
     [SerializeField] bool isActive = true;
+    [SerializeField] bool isColdown = true;
     [SerializeField] Sprite _baseSprite;
 
     private Image _image;
@@ -20,15 +24,22 @@ public class SkillButton: MonoBehaviour
     private float ActualColdown;   //текущее кд кнопки
 
 
-    private void ShowActive(){
-        this._image.color = Color.white;
-    }
-    private void ShowUnActive(){
-        this._image.color = Color.gray;
-    }
+    private void Show(){
 
-    private void ShowColdawn(){
-        this._image.color = Color.red;
+        if(this.isColdown){
+            this._image.material.SetFloat("_FillAmount",this.ActualColdown/this._coldown);
+        }
+        else{
+            if(isActive){
+                this._image.material.SetFloat("_FillAmount",0);
+            }
+            else{
+                this._image.material.SetFloat("_FillAmount",1);
+            }
+        }
+
+
+        
     }
 
 
@@ -36,15 +47,26 @@ public class SkillButton: MonoBehaviour
         Debug.Log("Click on button");
 
         if(isActive){
-            
-            //перевести кнопку в кд если было созданна комманда
-            this.isActive = false;
+            ICommand command = null;
+            isActive = false;
             this.ActualColdown = this._coldown;
-            this.ShowColdawn();
+            this.isColdown = true;
 
-        }else{
-            Debug.Log("Button in unActive");
+            if(this._commandFabrica.CreateCommand(command)){
+
+                if (Input.GetKey(KeyCode.LeftShift)){ 
+                    _entitysController.AddCommand(command);
+                }
+                else{
+                    _entitysController.GiveCommand(command);
+                }
+            }
+            else{
+
+            }
+
         }
+
 
 
     }
@@ -57,15 +79,21 @@ public class SkillButton: MonoBehaviour
     }
 
     public void Update(){
-        if(this.ActualColdown!=0){
-            this.ActualColdown-=Time.deltaTime;
-            if(this.ActualColdown<=0){
-                this.ActualColdown = 0;
-                this.isActive = true;
-                this.ShowActive();
-                
-            }
+
+        this.ActualColdown-=Time.deltaTime;
+
+        if(this.ActualColdown<=0){this.ActualColdown = 0;}
+        
+        if(this.ActualColdown == 0){
+            this.isActive = true;
+            this.isColdown = false;
         }
+        else{
+            isActive = false;
+            this.isColdown = true;
+        }
+        this.Show();
+        
     }
    
 }

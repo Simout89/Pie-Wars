@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// система отвечающая за управление юнитами игроком. В автоматическом режиме юниты сами будут искать цель для атаки 
@@ -9,23 +10,25 @@ using UnityEngine;
 
 
 
-public class EntitysControllModel : MonoBehaviour
+public class EntitysController : MonoBehaviour
 {
     [SerializeField] private SelectedEntitysModel _selectedEntitysModel;
     [SerializeField] private ICommandFabrica[] _commandsFabricsv = new ICommandFabrica[15];//содержит в себе объекты, которые создают комманды
 
+    public void GiveCommand(ICommand command){       //очистит список комманд у выделенных юнитов и добавит им новую
+        foreach(IEntity ent in _selectedEntitysModel.SelectedEntitys){
+            ent.ClearCommandList();
+            ent.AddCommand(command);
+        }
 
-
-
-    void CreateCommand(int buttonId){ //создаст запрошенную комманд
 
     }
-    public void GiveCommand(int buttonId){       //очистит список комманд у выделенных юнитов и добавит им новую
-    
-    }
 
-    public void AddCommand(int buttonId){        //добавит к уже имеющимся командам новую
-
+    public void AddCommand(ICommand command){//добавить юнитам комманду
+        foreach(IEntity ent in _selectedEntitysModel.SelectedEntitys){
+            ent.AddCommand(command);
+        }
+        
     }
 
 

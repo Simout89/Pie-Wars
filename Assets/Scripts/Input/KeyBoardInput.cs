@@ -11,7 +11,8 @@ using System;
 public class KeyBoardInput : MonoBehaviour
 {
 
-    private bool ctrIsActive;//зажат ли
+    private bool ctrIsActive;//зажат ли ctrl
+    private bool shiftIsActive;//зажат ли sfift
     public static event Action ActionPresentCtrlZ;//нажате ctrl+z
    
     public static event Action<int> ActionPresentCtrlNumber;//Нажатие ctrl+число, для бинда групп
