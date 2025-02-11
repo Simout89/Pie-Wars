@@ -7,7 +7,7 @@ public class GroupSistemController : MonoBehaviour
     [SerializeField] private SelectedEntitysModel _selectedUnitsModel;
  
 
-     private void OnEnable(){
+    private void OnEnable(){
         KeyBoardInput.ActionPresentCtrlNumber += NewGroup;
         KeyBoardInput.ActionPresentlNumber += SetGroup;
     }

@@ -1,4 +1,4 @@
-//using Microsoft.Unity.VisualStudio.Editor;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,8 +9,9 @@ public class SkillButton: MonoBehaviour
 {
 
     [SerializeField] private EntitysController _entitysController;
+    
 
-    [SerializeField] private ICommandFabrica _commandFabrica;
+    [SerializeField] private ICommandFabrica _commandFabrica = new MoveCommandFabrica();
 
 
     [SerializeField] bool isActive = true;
@@ -47,29 +48,34 @@ public class SkillButton: MonoBehaviour
         Debug.Log("Click on button");
 
         if(isActive){
-            ICommand command = null;
             isActive = false;
             this.ActualColdown = this._coldown;
             this.isColdown = true;
 
-            if(this._commandFabrica.CreateCommand(command)){
 
-                if (Input.GetKey(KeyCode.LeftShift)){ 
-                    _entitysController.AddCommand(command);
-                }
-                else{
-                    _entitysController.GiveCommand(command);
+            if (Input.GetKey(KeyCode.LeftShift)){ 
+                if(_entitysController.AddCommand(this._commandFabrica)){
+                    ;
+                }else{
+                    isActive = true;
+                    this.ActualColdown = 0;
+                    this.isColdown = false;
                 }
             }
             else{
-
+                if(_entitysController.GiveCommand(this._commandFabrica)){
+                    ;
+                }else{
+                    isActive = true;
+                    this.ActualColdown = 0;
+                    this.isColdown = false;
+                }
             }
-
-        }
-
-
-
+            }
+           
     }
+
+
 
     public void Awake(){
 

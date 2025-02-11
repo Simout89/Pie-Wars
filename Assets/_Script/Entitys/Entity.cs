@@ -22,5 +22,10 @@ public abstract class Entity : MonoBehaviour
     {
         audioSource.PlayOneShot(Sounds[0]);
     }
+
+    internal void Move()
+    {
+        throw new NotImplementedException();
+    }
     // смерть
 }

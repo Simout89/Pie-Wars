@@ -3,7 +3,5 @@ using UnityEngine;
 public interface ICommandFabrica
 {
     
-    public bool CreateCommand(ICommand output);
-    
-
+    public bool CreateCommand(ref ICommand output, IEntity ent);
 }

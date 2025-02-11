@@ -11,7 +11,7 @@ using UnityEngine.EventSystems;
 public abstract class Unit:MonoBehaviour, IEntity
 {
     protected Outline outline;
-    protected Vector3 MoveCord; 
+
     public EntityCfg Characteristics;
 
     private List<IObserverEntityClick> _observers = new();
@@ -19,8 +19,7 @@ public abstract class Unit:MonoBehaviour, IEntity
     protected List<ICommand> _commandList = new();
 
     public Transform transformr { 
-        get {return transform;}
-       
+        get {return transform;} 
     }
     public EntityCfg _characteristics { 
         get {return Characteristics;}
@@ -50,6 +49,10 @@ public abstract class Unit:MonoBehaviour, IEntity
 
     public void AddCommand(ICommand command){
         _commandList.Add(command);
+    }
+
+    public void RemoveCommand(ICommand command){
+        this._commandList.Remove(command);
     }
 
     public void ClearCommandList(){
@@ -93,10 +96,30 @@ public abstract class Unit:MonoBehaviour, IEntity
         foreach(IObserverEntityClick obs in _observers){obs.ClickOnEntityLeftShift(this);}
     }
 
+    public void Move(Vector3 target){
+
+        transform.position = Vector3.MoveTowards(transform.position, target, 0.3f);//(float)this.Characteristics.SP);
+    }
+
 
     public void Awake(){
         this.AddOutline();
         GameObject.Find("CONTROLLERS").GetComponent<SelectedEntitysController>().SubscribeEntitysClick(this);
+    }
+
+    public void Update(){
+        if(this._commandList.Count!=0){
+           
+           
+            //foreach(ICommand command in this._commandList){
+                if(this._commandList[0].Execute()){      //КОММАНДА ВЫПОЛНИЛАСЬ
+                    this._commandList.Remove(this._commandList[0]); 
+                }
+                
+            //}
+
+        }
+
     }
 
    
