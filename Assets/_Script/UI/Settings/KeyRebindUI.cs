@@ -5,28 +5,30 @@ using UnityEngine.UI;
 
 public class KeyRebindUI : MonoBehaviour
 {
-    [SerializeField] private InputActionReference actionRef;
+    private InputAction _actionRef;
     [SerializeField] private Button rebindButton;
     [SerializeField] private TMP_Text buttonText;
     [SerializeField] private CompositePart compositePart = CompositePart.Binding;
-
-    private void Start()
+    public void Initialize(InputAction actionRef)
     {
+        _actionRef = actionRef;
         rebindButton.onClick.AddListener(StartRebinding);
         UpdateButtonText();
     }
 
     private void StartRebinding()
     {
-        actionRef.action.Disable();
+        _actionRef.Disable();
         
-        actionRef.action.PerformInteractiveRebinding()
+        _actionRef.bindings[0].
+        
+        _actionRef.PerformInteractiveRebinding()
             .WithControlsExcluding("<Mouse>")
             .OnMatchWaitForAnother(0.1f)
             .WithTargetBinding((int)compositePart)
             .OnComplete(_ =>
             {
-                actionRef.action.Enable();
+                _actionRef.Enable();
                 UpdateButtonText();
             })
             .Start();
@@ -34,9 +36,9 @@ public class KeyRebindUI : MonoBehaviour
 
     private void UpdateButtonText()
     {
-        buttonText.text = "";
+        buttonText.text = $"{_actionRef.name} - ";
 
-        foreach (var binding in actionRef.action.bindings)
+        foreach (var binding in _actionRef.bindings)
         {
             if(binding.ToDisplayString() != "")
                 buttonText.text += binding.ToDisplayString() + "+";
