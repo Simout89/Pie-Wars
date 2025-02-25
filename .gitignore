@@ -66,8 +66,6 @@ Assets/Plugins/SimpleInput.meta
 
 Assets/Plugins/SimpleInput/ExtraResources.unitypackage.meta
 
-UserSettings/Layouts/default-6000.dwlt
-
 UserSettings/EditorUserSettings.asset
 
 Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Zenject-ReflectionBaking.csproj.meta
@@ -75,3 +73,5 @@ Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Zenject-ReflectionBaking.
 Assets/Plugins/Zenject/OptionalExtras/Signals/Zenject-Signals.csproj.meta
 
 Assets/Plugins/Zenject/Source/Zenject.csproj.meta
+
+UserSettings/Layouts/default-6000.dwlt
