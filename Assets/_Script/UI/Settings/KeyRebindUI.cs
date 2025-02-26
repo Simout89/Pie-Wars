@@ -19,8 +19,8 @@ public class KeyRebindUI : MonoBehaviour
     private void StartRebinding()
     {
         _actionRef.Disable();
-        
-        _actionRef.bindings[0].
+
+        // _actionRef.bindings[0]
         
         _actionRef.PerformInteractiveRebinding()
             .WithControlsExcluding("<Mouse>")
