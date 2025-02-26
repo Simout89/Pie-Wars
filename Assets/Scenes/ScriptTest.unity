@@ -2948,6 +2948,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputActionAsset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   keyPrefab: {fileID: 9041824462855769187, guid: 46742dbfefb0f0f449a21321021b105a, type: 3}
+  keyPrefabWithOneModifier: {fileID: 0}
   viewPort: {fileID: 1238836770}
 --- !u!1 &1038385185
 GameObject:

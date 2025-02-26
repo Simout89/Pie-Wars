@@ -8,10 +8,13 @@ public class KeyRebindUI : MonoBehaviour
     private InputAction _actionRef;
     [SerializeField] private Button rebindButton;
     [SerializeField] private TMP_Text buttonText;
-    [SerializeField] private CompositePart compositePart = CompositePart.Binding;
-    public void Initialize(InputAction actionRef)
+    private RebindUI _rebindUI;
+    private int _bindingIndex;
+    public void Initialize(InputAction actionRef, int bindingIndex, RebindUI rebindUI)
     {
         _actionRef = actionRef;
+        _bindingIndex = bindingIndex;
+        _rebindUI = rebindUI;
         rebindButton.onClick.AddListener(StartRebinding);
         UpdateButtonText();
     }
@@ -25,11 +28,12 @@ public class KeyRebindUI : MonoBehaviour
         _actionRef.PerformInteractiveRebinding()
             .WithControlsExcluding("<Mouse>")
             .OnMatchWaitForAnother(0.1f)
-            .WithTargetBinding((int)compositePart)
+            .WithTargetBinding(_bindingIndex)
             .OnComplete(_ =>
             {
                 _actionRef.Enable();
                 UpdateButtonText();
+                _rebindUI.ReloadButton();
             })
             .Start();
     }
@@ -45,11 +49,5 @@ public class KeyRebindUI : MonoBehaviour
         }
 
         buttonText.text = buttonText.text.Remove(buttonText.text.Length - 1);
-    }
-
-    public enum CompositePart
-    {
-        Binding = 2,
-        Modifier = 1,
     }
 }
