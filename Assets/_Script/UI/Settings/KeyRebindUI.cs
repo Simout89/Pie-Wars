@@ -42,10 +42,15 @@ public class KeyRebindUI : MonoBehaviour
     {
         buttonText.text = $"{_actionRef.name} - ";
 
-        foreach (var binding in _actionRef.bindings)
+        for (int i = 0; i < _actionRef.bindings.Count; i++)
         {
-            if(binding.ToDisplayString() != "")
-                buttonText.text += binding.ToDisplayString() + "+";
+            if(_actionRef.bindings[i].ToDisplayString() != "")
+            {
+                if(_bindingIndex == i)
+                    buttonText.text += "<color=\"green\">" + _actionRef.bindings[i].ToDisplayString() + "<color=\"black\">+";
+                else
+                    buttonText.text += "<color=\"black\">" + _actionRef.bindings[i].ToDisplayString() + "+";
+            }
         }
 
         buttonText.text = buttonText.text.Remove(buttonText.text.Length - 1);
