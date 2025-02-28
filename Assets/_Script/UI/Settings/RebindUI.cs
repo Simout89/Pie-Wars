@@ -23,17 +23,18 @@ public class RebindUI : MonoBehaviour
         {
             foreach (var action in inputActionMap.actions)
             {
-
+                List<int> bindingIndexes = new List<int>();
                 for (int i = 0; i < action.bindings.Count; i++)
                 {
                     Debug.Log(action.bindings[i]);
                     if (action.bindings[i].path.Split('/')[0] == "<Keyboard>")
                     {
-                        KeyRebindUI keyUI = Instantiate(keyPrefab, viewPort);
-                        keyUI.Initialize(action, i, this);
-                        _rebindButtons.Add(keyUI.gameObject);
+                        bindingIndexes.Add(i);
                     }
                 }
+                KeyRebindUI keyUI = Instantiate(keyPrefab, viewPort);
+                keyUI.Initialize(action, bindingIndexes.ToArray(), this);
+                _rebindButtons.Add(keyUI.gameObject);
             }
         }
     }
