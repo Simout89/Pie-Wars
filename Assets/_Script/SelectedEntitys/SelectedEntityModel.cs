@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro.EditorUtilities;
 using UnityEngine;
+using Zenject;
 
 public class SelectedEntitysModel : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class SelectedEntitysModel : MonoBehaviour
     /// вся логика
     /// </summary>
 
-    [SerializeField] private HistorySelectedData _historySelectedData;
+    [Inject] private HistorySelectedData _historySelectedData;
 
     [SerializeField] public List<IEntity> SelectedEntitys{ //для получения массива выделенных entity
         get{

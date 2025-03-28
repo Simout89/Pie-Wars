@@ -26,10 +26,12 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler, ISubjectMap
     public void OnPointerClick(UnityEngine.EventSystems.PointerEventData eventData){
 
         if(eventData.button==PointerEventData.InputButton.Left){
+            Debug.Log("click left");
             NotifyObserversAboutClickLeft();
         }
         if(eventData.button==PointerEventData.InputButton.Right){
             NotifyObserversAboutClickRight();
+            Debug.Log("click right");
             ClickOnMapRight?.Invoke(GetClickPosition());
         }
     }
@@ -52,7 +54,7 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler, ISubjectMap
         foreach(IObserverMap obs in _observers){obs.ClickOnMapRight(GetClickPosition());}
     }
 
-    UnityEngine.Vector3 GetClickPosition(){ //определит позицию клика
+    public UnityEngine.Vector3 GetClickPosition(){ //определит позицию клика
         UnityEngine.Vector3 pos = new();
         RaycastHit hit;
         Ray ray = _Camera.ScreenPointToRay(Input.mousePosition);
@@ -60,6 +62,11 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler, ISubjectMap
             pos = hit.point;
         }
         return pos;
+    }
+
+    void Awake()
+    {
+        Debug.Log("gdgyhdfghdfgh");
     }
 
 }

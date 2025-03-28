@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class HistorySelectedController : MonoBehaviour
 {
 
     [SerializeField] private HistorySelectedData _data;
-    [SerializeField] private SelectedEntitysModel _selectedEntitysModel;
+    [Inject] private SelectedEntitysModel _selectedEntitysModel;
  
 
     private void OnEnable(){

@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Xml;
 using Unity.VisualScripting;
 using UnityEngine;
+using Zenject;
 
 public class SelectedEntitysController : MonoBehaviour, IObserverEntityClick, IObserverMap
 {
@@ -10,16 +11,17 @@ public class SelectedEntitysController : MonoBehaviour, IObserverEntityClick, IO
     /// принимает и обрабатывает пользовательский ввод
     /// </summary>
     
-    public SelectedEntitysView _view;
+    
     public SelectedEntitysModel _model;
+    [SerializeField] public SelectedEntitysView _view;
 
     private List<IEntity> unitsInRect = new();
 
-    [SerializeField] private UIService uiService;
-    [SerializeField] private ObjectInRect objectInRect;
+    [Inject] private UIService uiService;
+    [Inject] private ObjectInRect objectInRect;
 
-    [SerializeField] private MapClickHendler mapClickHendler;
-    [SerializeField] private ObjectsPoolData objectsPoolData;
+    [Inject] private MapClickHendler mapClickHendler;
+    [Inject] private ObjectsPoolData objectsPoolData;
     
 
     private Color RectColor; //цвет для спрайта, меняется в зависимости от фракции

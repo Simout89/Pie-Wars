@@ -10,6 +10,10 @@ public class HexGrid : MonoBehaviour
     public HexCell[] cells;
 
 
+    public void test(){
+        Debug.Log(1111111111);
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -38,6 +42,13 @@ public class HexGrid : MonoBehaviour
         HexCell cell = cells[index];
         
     }
+
+    public void ActivateHexGrid(bool active){    //активирует сетку
+        this.gameObject.SetActive(active);
+    }
+
+    
+
 
     void Awake()
     {

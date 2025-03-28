@@ -1,15 +1,10 @@
-using System.Collections.Generic;
 using UnityEngine;
 
+//тут будут доступные здания для строительства
 
-//хранит все клетки
-public class BuildSystemhModel : MonoBehaviour
+
+
+public class BuildSystemUIModel
 {
-
-
-    private List<HexCell> _hexCellList;
-    private Build _selectedBuild; //выбранное для строительсва здание
-    private List<Build> _availableBuilds; //доступные для строительсва здания
-
-
+    
 }

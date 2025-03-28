@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class GroupSistemController : MonoBehaviour
 {
     [SerializeField] private GroupSistemData _groupSisteData;
-    [SerializeField] private SelectedEntitysModel _selectedUnitsModel;
+    [Inject] private SelectedEntitysModel _selectedUnitsModel;
  
 
     private void OnEnable(){

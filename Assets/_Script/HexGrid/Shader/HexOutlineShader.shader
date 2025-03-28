@@ -3,8 +3,8 @@ Shader "Custom/HexOutlineShader"
     Properties
     {
         _OutlineColor ("Outline Color", Color) = (1,1,1,1) // Цвет обводки
-        _OutlineWidth ("Outline Width", Range(0.0, 0.5)) = 0.1 // Ширина обводки
-        _FadeStart ("Fade Start", Range(0.0, 1.0)) = 0.8 // Где начинается прозрачность
+        _OutlineWidth ("Outline Width", Range(0.0, 1.0)) = 0.1 // Ширина обводки
+        _FadeStart ("Fade Start", Range(0.0, 3.0)) = 1.5 // Где начинается прозрачность
     }
     
     SubShader
@@ -38,7 +38,7 @@ Shader "Custom/HexOutlineShader"
             float _FadeStart;
             fixed4 _OutlineColor;
             
-            // Вершины гексагона
+            // Вершины гекса
             static float outerRadius = 10.0;
             static float innerRadius = outerRadius * 0.866025404;
             static float3 corners[7] = {
@@ -74,7 +74,7 @@ Shader "Custom/HexOutlineShader"
                 return length(p);
             }
             
-            // Функция для проверки, находится ли точка внутри гексагона
+            // Функция для проверки, находится ли точка внутри гекса
             bool isInsideHexagon(float2 p)
             {
                 int intersections = 0;

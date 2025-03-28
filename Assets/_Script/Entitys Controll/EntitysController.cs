@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Zenject;
 
 /// <summary>
 /// система отвечающая за управление юнитами игроком. В автоматическом режиме юниты сами будут искать цель для атаки 
@@ -13,7 +14,7 @@ using UnityEngine.UIElements;
 
 public class EntitysController : MonoBehaviour
 {
-    [SerializeField] private SelectedEntitysModel _selectedEntitysModel;
+    [Inject] private SelectedEntitysModel _selectedEntitysModel;
 
     [SerializeField] private ICommand _actualCommand;
 

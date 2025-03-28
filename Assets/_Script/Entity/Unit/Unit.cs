@@ -5,11 +5,15 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Zenject;
 
 
 //базовый класс для юнита, который ходит по земле//base class for a unit that walks on the ground
 public abstract class Unit:MonoBehaviour, IEntity
 {
+
+    [Inject] protected SelectedEntitysController _selectedEntitysController;
+
     protected Outline outline;
 
     public EntityCfg Characteristics;
@@ -105,7 +109,7 @@ public abstract class Unit:MonoBehaviour, IEntity
 
     public void Awake(){
         this.AddOutline();
-        GameObject.Find("CONTROLLERS").GetComponent<SelectedEntitysController>().SubscribeEntitysClick(this);
+        this._selectedEntitysController.SubscribeEntitysClick(this);
         this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
     }
 
