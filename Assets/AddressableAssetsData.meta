@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/AddressableAssetsData.meta
 guid: 3b386b498fd13ec4f93f84e6550be7a7
+========
+guid: 732c1be3fac304f45b7f532d59c579ac
+>>>>>>>> origin/dev:Assets/Models.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
