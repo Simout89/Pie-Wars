@@ -18,6 +18,7 @@ public class PreBuildInstaller : MonoInstaller
     [SerializeField] private UIService _uIService;
     [SerializeField] private ObjectInRect _objectInRect;
     [SerializeField] private MapClickHendler _mapClickHendler;
+    [SerializeField] private HexGrid _HexGrid;
 
     public override void InstallBindings()
     {
@@ -35,6 +36,7 @@ public class PreBuildInstaller : MonoInstaller
         Container.Bind<UIService>().FromInstance(_uIService).AsSingle();
         Container.Bind<ObjectInRect>().FromInstance(_objectInRect).AsSingle();
         Container.Bind<MapClickHendler>().FromInstance(_mapClickHendler).AsSingle();
+        Container.Bind<HexGrid>().FromInstance(_HexGrid).AsSingle();
        
 
 

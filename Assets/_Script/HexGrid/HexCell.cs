@@ -7,20 +7,25 @@ public class HexCell : MonoBehaviour
 {
 
 
-    public int elevation;
+    private Build build; //здание в клетке
+
+
     public HexCoordinates coordinates;
 
+    public static event Action<HexCell> MouseOnCell;
     
     void Awake()
     {
         MakeCHex();
     }
-
-
-
-
-
-
+    void OnMouseOver()
+    {
+        //GetComponent<Material>().SetColor("Outline Color", Color.black);
+        MouseOnCell?.Invoke(this);
+    }
+    void OnMouseExit()
+    {
+    }
 
     private void MakeCHex()   //создание гекса
     {
@@ -64,7 +69,7 @@ public class HexCell : MonoBehaviour
         mesh.vertices = vert;
         mesh.triangles = tri;
         Console.WriteLine(Center);
-        //collider.sharedMesh = mesh;
+        collider.sharedMesh = mesh;
 
     }
 

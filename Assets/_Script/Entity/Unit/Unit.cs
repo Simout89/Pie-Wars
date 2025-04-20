@@ -57,7 +57,7 @@ public abstract class Unit:MonoBehaviour, IEntity
 
     public void RemoveCommand(ICommand command){
         this._commandList.Remove(command);
-        Debug.Log("Remove command");
+       
     }
 
     public void ClearCommandList(){

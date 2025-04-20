@@ -10,9 +10,7 @@ public class HexGrid : MonoBehaviour
     public HexCell[] cells;
 
 
-    public void test(){
-        Debug.Log(1111111111);
-    }
+ 
 
     void Update()
     {
