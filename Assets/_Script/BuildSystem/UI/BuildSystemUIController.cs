@@ -1,11 +1,20 @@
 using UnityEngine;
+using Zenject;
 
 public class BuildSystemUIController : MonoBehaviour
 {
     
-    public void Show(bool ShowStatus){}
+    [Inject]private HexGrid hexGrid;
 
 
+
+    public void Show(bool ShowStatus){  //вызываетя, когда игрок переходит в режим строительства 
+        hexGrid.gameObject.SetActive(ShowStatus);
+        Debug.Log(ShowStatus);
+    }
+
+
+    
 
 
 

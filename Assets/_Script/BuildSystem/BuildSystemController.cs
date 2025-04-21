@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 using Zenject;
 
 
@@ -11,7 +12,14 @@ public class BuildSystemController : MonoBehaviour
 
     [Inject]private HexGrid hexGrid;
 
-    private GameObject cube;
+    //[SerializeField] private BuildSystemUIView UIView;
+    [SerializeField] BuildSystemUIController UIController;
+
+    private Build actualBuild; //здание, которое игрок планирует построить
+
+    [SerializeField] private bool isActive = false;
+ 
+
 
 
     private void OnEnable()
@@ -28,14 +36,20 @@ public class BuildSystemController : MonoBehaviour
     private void MouseOnCell(HexCell cell){
 
         
-            // Создаем луч из камеры в направлении курсора
-            cube.transform.position = cell.transform.position;
+            
+            //cube.transform.position = cell.transform.position;
 
+    }
+
+    public void EnableBuilding(){ //вызываетя, когда игрок переходит в режим строительства 
+        this.isActive = !this.isActive;
+        this.UIController.Show(this.isActive);
+        
     }
 
     void Awake()
     {
-        cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        //cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
     }
 
     void Update()

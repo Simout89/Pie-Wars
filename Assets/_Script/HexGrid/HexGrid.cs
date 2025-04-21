@@ -60,6 +60,10 @@ public class HexGrid : MonoBehaviour
             }
         }
 
+        gameObject.SetActive(false);
+        this.transform.position = new Vector3(0f, 0.1f, 0f);
+
+
     }
 
     void CreateCell(int x, int z, int i)
