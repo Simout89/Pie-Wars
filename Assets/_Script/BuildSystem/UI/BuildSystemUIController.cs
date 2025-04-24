@@ -6,10 +6,13 @@ public class BuildSystemUIController : MonoBehaviour
     
     [Inject]private HexGrid hexGrid;
 
+    [SerializeField]private GameObject buildSystemInterface;
+
 
 
     public void Show(bool ShowStatus){  //вызываетя, когда игрок переходит в режим строительства 
-        hexGrid.gameObject.SetActive(ShowStatus);
+        this.hexGrid.gameObject.SetActive(ShowStatus);
+        this.buildSystemInterface.SetActive(ShowStatus);
         Debug.Log(ShowStatus);
     }
 
