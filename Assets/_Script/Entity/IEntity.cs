@@ -1,4 +1,6 @@
 
+using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,6 +11,8 @@ public interface IEntity: ISubjecEntityClick, IPointerClickHandler
 
     Transform transform { get;}
     EntityCfg _characteristics{ get;}
+
+    public List<SkillBase> skills { get; set; }
     abstract bool ExecuteCommand(ICommand command);
     abstract void AddCommand(ICommand command);
     abstract void RemoveCommand(ICommand command);

@@ -4,16 +4,16 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Skill", menuName = "ScriptableObjects/Skill", order = 1)]
 public class SkillBase: ScriptableObject
 {
-    [SerializeField] private Texture2D icon;
-    [SerializeField] private float selfDamage;
-    [SerializeField] private float damage;
-    [SerializeField] private float treatment;
-    [SerializeField] private float durationOfAction;
-    [SerializeField] private float range;
-    [SerializeField] private bool switchable;
-    [SerializeField] private float additionalRange;
-    [SerializeField] private float additionalMovementSpeed;
-    [SerializeField] private float additionalAttackSpeed;
+    [SerializeField] public Texture2D icon;
+    [SerializeField] public float selfDamage;
+    [SerializeField] public float damage;
+    [SerializeField] public float treatment;
+    [SerializeField] public float durationOfAction;
+    [SerializeField] public float range;
+    [SerializeField] public bool switchable;
+    [SerializeField] public float additionalRange;
+    [SerializeField] public float additionalMovementSpeed;
+    [SerializeField] public float additionalAttackSpeed;
 
     private bool swtichState;
 

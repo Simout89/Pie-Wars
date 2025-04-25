@@ -26,6 +26,7 @@ public class HistorySelectedStack
             _items[_count] = new(item);
             Debug.Log(_items[_count].Count);
         }
+        
     }
     public List<IEntity> Get(){
 

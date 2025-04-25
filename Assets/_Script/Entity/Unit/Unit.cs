@@ -30,6 +30,14 @@ public abstract class Unit:MonoBehaviour, IEntity
        
     }
 
+    public List<SkillBase> skills
+    {
+        get => _skills;
+        set => _skills = value;
+    }
+
+    [SerializeField] private List<SkillBase> _skills;
+
     public void OnPointerClick(UnityEngine.EventSystems.PointerEventData eventData){
 
         //для обработки клика на юнит//to handle clicks on a unit
