@@ -66,7 +66,7 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler, ISubjectMap
 
     void Awake()
     {
-        Debug.Log("gdgyhdfghdfgh");
+       
     }
 
 }

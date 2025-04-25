@@ -17,7 +17,6 @@ public class HistorySelectedStack
 
 
     public void Add(List<IEntity> item){
-        Debug.Log(_items.Length);
         if (_count == _items.Length-1){
             _items[_count-1] = new(item);
             Debug.Log(_items[_count-1].Count);

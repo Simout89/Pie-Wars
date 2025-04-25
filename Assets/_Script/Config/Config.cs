@@ -51,10 +51,6 @@ public class Config: MonoBehaviour{       //ТУТ ХРАНЯТСЯ ВСЕ НА�
 
     public List<EntityCfg> CfgData = new List<EntityCfg>();
 
-    //public Config(string Path){
-        //CfgPath = Path;
-    //}
-
     void Awake(){
         Read();
     }
@@ -81,14 +77,7 @@ public class Config: MonoBehaviour{       //ТУТ ХРАНЯТСЯ ВСЕ НА�
         
         
     }
-    //public void Writre(double[] data, int ind){ //занишет данные в файл ind - номер записи
-        //writer = new BinaryWriter(File.Open(CfgPath, FileMode.OpenOrCreate));
-        //writer.Seek(96*ind, SeekOrigin.Begin);
-        //for (int i=0;i<12;i++){
-            //writer.Write(data[i]);
-        //}
-        //writer.Close(); 
-    //}
+
 
 
 }

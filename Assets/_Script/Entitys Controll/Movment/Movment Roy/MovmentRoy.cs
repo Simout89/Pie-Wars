@@ -82,7 +82,7 @@ public class MovmentRoy: IMovmentGroup
             
             //if(activeEnt.transform.position == this._target){
             if((Vector3.Distance(activeEnt.transform.position,this._target))<=1.0f){
-                Debug.Log("11111");
+                
                 activeEnt.RemoveCommand(this._commandList[entId]);
                 this._completedUnits.Add(activeEnt);
                 this._activeUnits.Remove(activeEnt);
@@ -92,7 +92,6 @@ public class MovmentRoy: IMovmentGroup
 
             if(this._completedUnits.Count !=0){
                 for(int i = 0; i<this._completedUnits.Count;i++){
-                    Debug.Log(Vector3.Distance(activeEnt.transform.position,this._completedUnits[i].transform.position));
 
                     if((Vector3.Distance(activeEnt.transform.position,this._completedUnits[i].transform.position))<=6.0f){
 

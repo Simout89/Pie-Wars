@@ -10,9 +10,7 @@ public class HexGrid : MonoBehaviour
     public HexCell[] cells;
 
 
-    public void test(){
-        Debug.Log(1111111111);
-    }
+ 
 
     void Update()
     {
@@ -61,6 +59,10 @@ public class HexGrid : MonoBehaviour
                 CreateCell(x, z, i++);
             }
         }
+
+        gameObject.SetActive(false);
+        this.transform.position = new Vector3(0f, 0.1f, 0f);
+
 
     }
 
