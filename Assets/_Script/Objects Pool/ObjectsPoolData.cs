@@ -11,11 +11,24 @@ using UnityEngine;
 
 public class ObjectsPoolData : MonoBehaviour
 {
-    [SerializeField] private HashSet<Unit>AllUnits = new();  //все
-    private HashSet<Build>AllBuilds = new();
+    [SerializeField] public HashSet<Unit>AllUnits = new();  //все
+    [SerializeField] private HashSet<Build> AllBuilds = new();
 
     [SerializeField] public List <Unit>AllUnitsInCameraSpace = new();         //юниты и здания, попадающие в область видимости игрока
     private HashSet<Build>AllBuildsInCameraSpace = new();
+
+
+    public void AddBuild(Build bld)
+    {
+        this.AllBuilds.Add(bld);
+    }
+    public void AddUnit(Unit unt)
+    {
+        Debug.Log("Add unit");
+        this.AllUnits.Add(unt);
+        this.AllUnitsInCameraSpace.Add(unt);
+        Debug.Log($"После добавления: {AllUnitsInCameraSpace.Count} юнитов");
+    }
 
 
 }

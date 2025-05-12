@@ -109,16 +109,26 @@ public abstract class Unit:MonoBehaviour, IEntity
 
     public void Awake(){
         this.AddOutline();
-        this._selectedEntitysController.SubscribeEntitysClick(this);
+        //this._selectedEntitysController.SubscribeEntitysClick(this);
         this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
     }
+    public void Start()
+    {
+        
+        this._selectedEntitysController.SubscribeEntitysClick(this);  // Вызов после инъекции
+        
+    }
+
+
 
     public void Update(){
         if(this._commandList.Count!=0){
-           
+
+            
            
             //foreach(ICommand command in this._commandList){
                 if(this._commandList[0].Execute()){      //КОММАНДА ВЫПОЛНИЛАСЬ
+                    
                     this._commandList.Remove(this._commandList[0]); 
                 }
                 
