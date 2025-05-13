@@ -111,8 +111,14 @@ public class Build : MonoBehaviour, IEntity
     public void Awake()
     {
         this.AddOutline();
-        this._selectedEntitysController.SubscribeEntitysClick(this);
+        //this._selectedEntitysController.SubscribeEntitysClick(this);
         this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
+        
+    }
+
+    public void Start()
+    {
+        this._selectedEntitysController.SubscribeEntitysClick(this);
         this.InitBuild();
     }
 

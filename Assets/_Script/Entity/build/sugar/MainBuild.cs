@@ -8,7 +8,7 @@ public class MainBuild : Build
     [Inject] private DiContainer _container;
     public override void InitBuild()
     {
-        SpawnCommand spawnCommand = new(this, basedUnitPrefab, 15f);
+        SpawnCommand spawnCommand = new(this, basedUnitPrefab, 3f);
         _container.Inject(spawnCommand);
         this._staticCommandList.Add(spawnCommand);
 
