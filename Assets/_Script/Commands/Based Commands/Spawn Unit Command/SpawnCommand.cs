@@ -4,6 +4,8 @@ using Zenject;
 
 public class SpawnCommand : ICommand
 {
+
+    [Inject] private DiContainer _container;
     public IEntity _entity { get; set; }
 
     [Inject] private ObjectsPoolData objPoolData;
@@ -48,7 +50,7 @@ public class SpawnCommand : ICommand
                 // ѕразмеры коллайдера 
                 Collider unitCollider = targetUnitPrefab.GetComponent<Collider>();
                 Vector3 unitSize = unitCollider != null ? unitCollider.bounds.size : new Vector3(20f, 20f, 20f);
-                Debug.Log(unitSize);
+                
 
                 
                 Vector3 expandedSize = unitSize + new Vector3(15f, 3f, 15f); // небольшой запас 
@@ -63,8 +65,9 @@ public class SpawnCommand : ICommand
                 {
                     
                     Unit spawnedUnit = GameObject.Instantiate(targetUnitPrefab, spawnPoint, Quaternion.identity);
+                    _container.Inject(spawnedUnit);
+                    spawnedUnit.teamNum = _entity.teamNum;
                     spawnedUnit.gameObject.SetActive(true);
-
                     
                     objPoolData.AddUnit(spawnedUnit);
 
@@ -78,7 +81,7 @@ public class SpawnCommand : ICommand
 
             if (!foundValidPoint)
             {
-                Debug.Log("No valid spawn location found.");
+                //Debug.Log("No valid spawn location found.");
                 return false;
             }
         }

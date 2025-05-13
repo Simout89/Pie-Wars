@@ -24,10 +24,10 @@ public class ObjectsPoolData : MonoBehaviour
     }
     public void AddUnit(Unit unt)
     {
-        Debug.Log("Add unit");
+        
         this.AllUnits.Add(unt);
         this.AllUnitsInCameraSpace.Add(unt);
-        Debug.Log($"После добавления: {AllUnitsInCameraSpace.Count} юнитов");
+        
     }
 
 

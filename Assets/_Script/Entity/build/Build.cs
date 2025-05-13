@@ -24,6 +24,19 @@ public class Build : MonoBehaviour, IEntity
 
     }
 
+    private int _teamNum;
+    public int teamNum
+    {
+        get
+        {
+            return _teamNum;
+        }
+        set
+        {
+            _teamNum = value;
+        }
+    }
+
 
     public void AddCommand(ICommand command)
     {
@@ -122,7 +135,7 @@ public class Build : MonoBehaviour, IEntity
         this.InitBuild();
     }
 
-    public void Update()
+    protected virtual void Update()
     {
         if (this._commandList.Count != 0)
         {
@@ -143,5 +156,10 @@ public class Build : MonoBehaviour, IEntity
 
         }
 
+    }
+
+    public virtual void TakeDamage(double damage)
+    {
+        this.Characteristics.HP -= damage;
     }
 }

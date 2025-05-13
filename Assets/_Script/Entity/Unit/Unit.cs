@@ -9,7 +9,7 @@ using Zenject;
 
 
 //базовый класс для юнита, который ходит по земле//base class for a unit that walks on the ground
-public abstract class Unit:MonoBehaviour, IEntity
+public abstract class Unit : MonoBehaviour, IEntity
 {
 
     [Inject] protected SelectedEntitysController _selectedEntitysController;
@@ -21,98 +21,132 @@ public abstract class Unit:MonoBehaviour, IEntity
     private List<IObserverEntityClick> _observers = new();
 
     protected List<ICommand> _commandList = new();
+    protected List<ICommand> _staticCommandList = new(); //commands that are always executed
 
-    public Transform transformr { 
-        get {return transform;} 
+    public Transform transformr {
+        get { return transform; }
     }
-    public EntityCfg _characteristics { 
-        get {return Characteristics;}
-       
+    public EntityCfg _characteristics {
+        get { return Characteristics; }
+
     }
 
-    public void OnPointerClick(UnityEngine.EventSystems.PointerEventData eventData){
+    private int _teamNum;
+    public int teamNum
+    {
+        get
+        {
+            return _teamNum;
+        }
+        set
+        {
+            _teamNum = value;
+        }
+    }
+
+
+
+    public void OnPointerClick(UnityEngine.EventSystems.PointerEventData eventData) {
 
         //для обработки клика на юнит//to handle clicks on a unit
-        if(Input.GetKey(KeyCode.LeftShift)){ //клик по юниту лкм+shift
-             if(eventData.button==PointerEventData.InputButton.Left){
+        if (Input.GetKey(KeyCode.LeftShift)) { //клик по юниту лкм+shift
+            if (eventData.button == PointerEventData.InputButton.Left) {
                 NotifyObserversAboutClickLeftShift();
             }
-             return;
+            return;
         }
-        if(eventData.button==PointerEventData.InputButton.Left){//клик по юниту лкм
-                NotifyObserversAboutClickLeft();
+        if (eventData.button == PointerEventData.InputButton.Left) {//клик по юниту лкм
+            NotifyObserversAboutClickLeft();
         }
 
 
 
     }
 
-    public bool ExecuteCommand(ICommand command){
+
+    public virtual void InitUnit()//called when a building spawns to initialize static commands and others
+    {
+
+    }
+
+
+    public bool ExecuteCommand(ICommand command) {
         return command.Execute();
     }
 
-    public void AddCommand(ICommand command){
+    public void AddCommand(ICommand command) {
         _commandList.Add(command);
     }
 
-    public void RemoveCommand(ICommand command){
+    public void RemoveCommand(ICommand command) {
         this._commandList.Remove(command);
-       
+
     }
 
-    public void ClearCommandList(){
+    public void ClearCommandList() {
         _commandList.Clear();
     }
 
-    public void AddOutline(){
+    public void AddOutline() {
         outline = gameObject.AddComponent<Outline>();
         outline.OutlineMode = Outline.Mode.OutlineAll;
         outline.OutlineColor = Color.yellow;
         outline.OutlineWidth = 0.0f;
     }
 
-    public void OnOutline(){
+    public void OnOutline() {
         outline.OutlineWidth = 5f;
     }
 
-    public void OffOutline(){
+    public void OffOutline() {
         outline.OutlineWidth = 0.0f;
     }
 
-    public void InitCharacteristics(){
+    public void InitCharacteristics() {
         throw new NotImplementedException();
     }
 
-    public void AttachObserverUnitsClick(IObserverEntityClick observer){
+    public void AttachObserverUnitsClick(IObserverEntityClick observer) {
         _observers.Add(observer);
     }
 
-    public void DetachObserverUnitsClick(IObserverEntityClick observer){
-        if(_observers.Contains(observer)){
+    public void DetachObserverUnitsClick(IObserverEntityClick observer) {
+        if (_observers.Contains(observer)) {
             _observers.Remove(observer);
         }
     }
 
-    public void NotifyObserversAboutClickLeft(){
-        foreach(IObserverEntityClick obs in _observers){obs.ClickOnEntityLeft(this);}
+    public void NotifyObserversAboutClickLeft() {
+        foreach (IObserverEntityClick obs in _observers) { obs.ClickOnEntityLeft(this); }
     }
 
-    public void NotifyObserversAboutClickLeftShift(){
-        foreach(IObserverEntityClick obs in _observers){obs.ClickOnEntityLeftShift(this);}
+    public void NotifyObserversAboutClickLeftShift() {
+        foreach (IObserverEntityClick obs in _observers) { obs.ClickOnEntityLeftShift(this); }
     }
 
-    public void Move(Vector3 target){
+    public void Move(Vector3 target) {
         this.transform.LookAt(target);
         transform.position = Vector3.MoveTowards(transform.position, target, 0.3f);//(float)this.Characteristics.SP);
     }
 
+    public virtual void TakeDamage(double damage)
+    {
+        this.Characteristics.HP -= damage;
+        if (Characteristics.HP <= 0)
+        {
+
+            Destroy(gameObject);
+        }
+
+        
+    }
 
     public void Awake(){
         this.AddOutline();
         //this._selectedEntitysController.SubscribeEntitysClick(this);
         this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
     }
-    public void Start()
+    protected virtual void Start()
     {
         
         this._selectedEntitysController.SubscribeEntitysClick(this);  // Вызов после инъекции
@@ -121,18 +155,28 @@ public abstract class Unit:MonoBehaviour, IEntity
 
 
 
-    public void Update(){
+
+    protected virtual void Update(){
+
+
+        //Debug.Log(teamNum);
+
         if(this._commandList.Count!=0){
 
-            
-           
-            //foreach(ICommand command in this._commandList){
                 if(this._commandList[0].Execute()){      //КОММАНДА ВЫПОЛНИЛАСЬ
                     
                     this._commandList.Remove(this._commandList[0]); 
                 }
-                
-            //}
+
+        }
+
+        if (this._staticCommandList.Count != 0)
+        {
+
+            for (int i = 0; i < this._staticCommandList.Count; i++)
+            {
+                this._staticCommandList[i].Execute();
+            }
 
         }
 

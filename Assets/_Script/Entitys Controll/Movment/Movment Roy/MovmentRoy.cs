@@ -75,13 +75,17 @@ public class MovmentRoy: IMovmentGroup
 
         for(int ind=0;ind<this._activeUnits.Count;ind++){
 
+
+
             activeEnt = this._activeUnits[ind];
             entId = this._unitsList.IndexOf(activeEnt);
 
+            if (activeEnt == null || activeEnt.Equals(null)) continue;
+
             //Debug.Log(Vector3.Distance(activeEnt.transform.position,this._target));
-            
+
             //if(activeEnt.transform.position == this._target){
-            if((Vector3.Distance(activeEnt.transform.position,this._target))<=1.0f){
+            if ((Vector3.Distance(activeEnt.transform.position,this._target))<=1.0f){
                 
                 activeEnt.RemoveCommand(this._commandList[entId]);
                 this._completedUnits.Add(activeEnt);

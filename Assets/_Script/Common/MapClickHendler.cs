@@ -26,12 +26,12 @@ public class MapClickHendler : MonoBehaviour, IPointerClickHandler, ISubjectMap
     public void OnPointerClick(UnityEngine.EventSystems.PointerEventData eventData){
 
         if(eventData.button==PointerEventData.InputButton.Left){
-            Debug.Log("click left");
+            
             NotifyObserversAboutClickLeft();
         }
         if(eventData.button==PointerEventData.InputButton.Right){
             NotifyObserversAboutClickRight();
-            Debug.Log("click right");
+            
             ClickOnMapRight?.Invoke(GetClickPosition());
         }
     }

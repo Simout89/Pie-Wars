@@ -19,12 +19,12 @@ public class HistorySelectedStack
     public void Add(List<IEntity> item){
         if (_count == _items.Length-1){
             _items[_count-1] = new(item);
-            Debug.Log(_items[_count-1].Count);
+            
 
         }else{
             _count+=1;
             _items[_count] = new(item);
-            Debug.Log(_items[_count].Count);
+            
         }
     }
     public List<IEntity> Get(){
@@ -34,7 +34,7 @@ public class HistorySelectedStack
         }else{
             List<IEntity> item = _items[_count];
             _items[_count] = default(List<IEntity>); // сбрасываем ссылку
-            Debug.Log(item.Count);
+            
             _count-=1;
             return item;
         }

@@ -116,10 +116,16 @@ public class SelectedEntitysController : MonoBehaviour, IObserverEntityClick, IO
             this._view.SetVisible(true);
             this.ClearUnitsInRect();
 
-            foreach(IEntity entity in objectsPoolData.AllUnitsInCameraSpace){
+            if (objectsPoolData.AllUnitsInCameraSpace.Count < 0)
+            {
 
-                if(objectInRect.PointInRect(entity.transform.position, startPoint, endPoint)){
-                    this.AddEntityInRect(entity);
+                foreach (IEntity entity in objectsPoolData.AllUnitsInCameraSpace)
+                {
+
+                    if (objectInRect.PointInRect(entity.transform.position, startPoint, endPoint))
+                    {
+                        this.AddEntityInRect(entity);
+                    }
                 }
             }
 
