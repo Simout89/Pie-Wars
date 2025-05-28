@@ -11,6 +11,8 @@ public class SkillPanel : MonoBehaviour
     private List<SkillBase> SkillButtons;
     private List<UISkillButton> buttons = new List<UISkillButton>();
 
+    private IEntity entity;
+
     private void Awake()
     {
         SkillButtons = new List<SkillBase>();
@@ -28,6 +30,8 @@ public class SkillPanel : MonoBehaviour
 
     public void AddSkills(IEntity entity) // TODO: вызов добавить из истории где то там
     {
+        this.entity = entity;
+        
         if (buttons.Count > 0)
         {
             foreach (var button in buttons)
@@ -52,6 +56,6 @@ public class SkillPanel : MonoBehaviour
     private void OnSkillClicked(int skillId)
     {
         Debug.Log($"Skill {skillId}");
-        SkillButtons[skillId].UseSkill();
+        SkillButtons[skillId].UseSkill(entity.transform.position);
     }
 }

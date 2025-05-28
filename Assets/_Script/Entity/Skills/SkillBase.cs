@@ -8,7 +8,7 @@ public abstract class SkillBase: ScriptableObject
     [SerializeField] public string description;
     [SerializeField] public Texture2D icon;
     
-    public virtual void UseSkill()
+    public virtual void UseSkill(Vector3 center)
     {
         
     }

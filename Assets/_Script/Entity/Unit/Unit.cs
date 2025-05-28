@@ -12,6 +12,7 @@ using Zenject;
 [Serializable]
 public abstract class Unit:MonoBehaviour, IEntity, IDamageable
 {
+    
 
     [Inject] protected SelectedEntitysController _selectedEntitysController;
 
@@ -29,10 +30,22 @@ public abstract class Unit:MonoBehaviour, IEntity, IDamageable
 
     public float MaximumHealth { get; set; } = 50;
     public float CurrentHealth { get; set; }
-    public void GetDamage(int damage)
+    public void GetDamage(float damage)
     {
+        CurrentHealth -= damage;
+        Debug.Log($"{gameObject.name} получен урон: {damage}");
         
+        if (CurrentHealth <= 0)
+        {
+            OnDeath?.Invoke();
+            Debug.Log($"{gameObject.name} умер");
+            Destroy(gameObject);
+        }
     }
+
+    public event Action OnDeath;
+
+    public int TeamId { get; set; } = 0;
 
     public EntityCfg _characteristics { 
         get {return Characteristics;}
@@ -155,5 +168,7 @@ public interface IDamageable
     public float MaximumHealth { get; set; }
     public float CurrentHealth { get; set; }
 
-    public void GetDamage(int damage);
+    public void GetDamage(float damage);
+
+    public event Action OnDeath;
 }

@@ -8,8 +8,7 @@ using UnityEngine.EventSystems;
 
 public interface IEntity: ISubjecEntityClick, IPointerClickHandler
 {
-
-
+    public int TeamId { get; set; }
     Transform transform { get;}
     EntityCfg _characteristics{ get;}
 
