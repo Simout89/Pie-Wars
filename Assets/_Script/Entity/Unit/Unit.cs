@@ -10,7 +10,7 @@ using Zenject;
 
 //базовый класс для юнита, который ходит по земле//base class for a unit that walks on the ground
 [Serializable]
-public abstract class Unit:MonoBehaviour, IEntity
+public abstract class Unit:MonoBehaviour, IEntity, IDamageable
 {
 
     [Inject] protected SelectedEntitysController _selectedEntitysController;
@@ -26,6 +26,14 @@ public abstract class Unit:MonoBehaviour, IEntity
     public Transform transformr { 
         get {return transform;} 
     }
+
+    public float MaximumHealth { get; set; } = 50;
+    public float CurrentHealth { get; set; }
+    public void GetDamage(int damage)
+    {
+        
+    }
+
     public EntityCfg _characteristics { 
         get {return Characteristics;}
        
@@ -120,6 +128,8 @@ public abstract class Unit:MonoBehaviour, IEntity
         this.AddOutline();
         this._selectedEntitysController.SubscribeEntitysClick(this);
         this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
+
+        CurrentHealth = MaximumHealth;
     }
 
     public void Update(){
@@ -138,4 +148,12 @@ public abstract class Unit:MonoBehaviour, IEntity
     }
 
    
+}
+
+public interface IDamageable
+{
+    public float MaximumHealth { get; set; }
+    public float CurrentHealth { get; set; }
+
+    public void GetDamage(int damage);
 }

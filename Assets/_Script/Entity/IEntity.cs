@@ -9,6 +9,7 @@ using UnityEngine.EventSystems;
 public interface IEntity: ISubjecEntityClick, IPointerClickHandler
 {
 
+
     Transform transform { get;}
     EntityCfg _characteristics{ get;}
 
