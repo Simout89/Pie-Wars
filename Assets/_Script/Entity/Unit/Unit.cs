@@ -9,6 +9,7 @@ using Zenject;
 
 
 //базовый класс для юнита, который ходит по земле//base class for a unit that walks on the ground
+[Serializable]
 public abstract class Unit:MonoBehaviour, IEntity
 {
 

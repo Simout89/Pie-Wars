@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Threading;
 using NUnit.Framework;
 using UnityEngine;
+using Zenject;
+
 public class HistorySelectedStack
 {
-
     [SerializeField]  private List<IEntity>[] _items;
     [SerializeField]private int _count=0;//текущее кол-во элементов
     public const int _maxCount  = Constants.HISTORY_SELECTED_UNITS;
@@ -26,7 +27,6 @@ public class HistorySelectedStack
             _items[_count] = new(item);
             Debug.Log(_items[_count].Count);
         }
-        
     }
     public List<IEntity> Get(){
 

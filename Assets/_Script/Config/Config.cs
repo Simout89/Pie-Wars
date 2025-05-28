@@ -5,9 +5,9 @@ using System.Security.Cryptography.X509Certificates;
 
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 //не умеет менять cfg, только читать//can't change cfg, only read
-
 
 public class EntityCfg{    //настройки для отдельной сющбности // settings for a separate entity
     public double HP;
