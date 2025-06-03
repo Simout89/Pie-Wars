@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using _Script.SelectedEntitys;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Zenject;
@@ -16,10 +17,13 @@ public class EntitysController : MonoBehaviour
 {
     [Inject] private SelectedEntitysModel _selectedEntitysModel;
 
+    // ИСПРАВЛЕННОЕ СВОЙСТВО (было рекурсивная ссылка):
+    public SelectedEntitysModel SelectedModel => _selectedEntitysModel;
+
     [SerializeField] private ICommand _actualCommand;
 
-    private List<IMovmentGroup> _movmentRoyGroups = new() ;
-    private int _movmentType = 0;       //0-передвижение роем/1-передвижение взводом
+    private List<IMovmentGroup> _movmentRoyGroups = new();
+    private int _movmentType = 0;
 
 
     private void OnEnable(){
@@ -136,18 +140,50 @@ public class EntitysController : MonoBehaviour
 
 
 
-    public bool GiveCommand(ICommandFabrica commandFabrica){       //очистит список комманд у выделенных юнитов и добавит им новую
+    public bool GiveCommand(ICommandFabrica commandFabrica)
+    {
+        Debug.Log($"EntitysController.GiveCommand вызван");
+        
+        if(_selectedEntitysModel == null)
+        {
+            Debug.LogError("_selectedEntitysModel равен null!");
+            return false;
+        }
+        
+        if(_selectedEntitysModel.SelectedEntitys == null)
+        {
+            Debug.LogError("SelectedEntitys равен null!");
+            return false;
+        }
+        
+        Debug.Log($"Выделенных юнитов: {_selectedEntitysModel.SelectedEntitys.Count}");
+        
+        if(_selectedEntitysModel.SelectedEntitys.Count == 0)
+        {
+            Debug.Log("❌ Нет выделенных юнитов!");
+            return false;
+        }
+        
         bool result = false;
 
-        foreach(IEntity ent in _selectedEntitysModel.SelectedEntitys){
-            if(commandFabrica.CreateCommand(ref _actualCommand,ent)){result = true;}
-            Debug.Log(_actualCommand);
-            ent.ClearCommandList();
-            ent.AddCommand(_actualCommand);
+        foreach(IEntity ent in _selectedEntitysModel.SelectedEntitys)
+        {
+            Debug.Log($"Обрабатываем юнита: {ent.transform.name}");
+            
+            if(commandFabrica.CreateCommand(ref _actualCommand, ent))
+            {
+                Debug.Log($"✅ Команда создана: {_actualCommand}");
+                result = true;
+                ent.ClearCommandList();
+                ent.AddCommand(_actualCommand);
+            }
+            else
+            {
+                Debug.LogError("❌ Не удалось создать команду!");
+            }
         }
+        
         return result;
-
-
     }
 
     public bool AddCommand(ICommandFabrica commandFabrica){//добавить юнитам комманду, создаст комманду

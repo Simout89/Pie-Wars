@@ -133,8 +133,23 @@ public abstract class Unit:MonoBehaviour, IEntity, IDamageable
 
     public void Move(Vector3 target){
         this.transform.LookAt(target);
-        transform.position = Vector3.MoveTowards(transform.position, target, 0.3f);//(float)this.Characteristics.SP);
+    
+        // Проверяем, что Characteristics инициализированы
+        float speed = 5f; // значение по умолчанию
+    
+        if(this.Characteristics != null)
+        {
+            speed = (float)this.Characteristics.SP;
+        }
+        else
+        {
+            Debug.LogWarning($"Characteristics не инициализированы для {gameObject.name}, используется скорость по умолчанию: {speed}");
+        }
+    
+        float moveDistance = speed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, target, moveDistance);
     }
+
 
 
     public void Awake(){

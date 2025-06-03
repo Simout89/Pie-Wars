@@ -2,15 +2,13 @@ using UnityEngine;
 
 public class Build : MonoBehaviour
 {
+    // Убираем висячий "private"
     
-    private 
-
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         

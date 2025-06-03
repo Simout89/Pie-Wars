@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Xml;
+using _Script.SelectedEntitys;
 using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;

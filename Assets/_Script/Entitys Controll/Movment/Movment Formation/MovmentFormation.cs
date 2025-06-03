@@ -86,13 +86,22 @@ public class MovmentFormation : IMovmentGroup
     public void Update()
     {
         Vector3 offset = new();
-        foreach(IEntity ent in this._activeUnits){
+        List<IEntity> unitsToMove = new List<IEntity>(this._activeUnits); // копия для безопасной итерации
+    
+        foreach(IEntity ent in unitsToMove){
             offset = ent.transform.position - _centerPosition;
-            if(ent.transform.position == this._target+offset){
+            Vector3 targetPosition = this._target + offset;
+        
+            // СТАРЫЙ КОД с точным сравнением:
+            // if(ent.transform.position == this._target+offset){
+        
+            // ИСПРАВЛЕННЫЙ КОД:
+            float distance = Vector3.Distance(ent.transform.position, targetPosition);
+        
+            if(distance <= 0.5f){
                 this._completedUnits.Add(ent);
                 this._activeUnits.Remove(ent);
             }
-
         }
     }
 }

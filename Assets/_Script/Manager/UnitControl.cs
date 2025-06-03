@@ -15,12 +15,12 @@ public class UnitControl : MonoBehaviour
                 if (unit == unitModel)
                 {
                     _selectedUnits.Remove(unit);
-                    Debug.Log("Убран юнит: ");
+                    Debug.Log("Убран юнит: " + unit.name);
                     return;
                 }
             }
             _selectedUnits.Add(unitModel);
-            Debug.Log("Добавлен юнит: ");
+            Debug.Log("Добавлен юнит: " + unitModel.name);
         }
         else
         {
@@ -30,10 +30,20 @@ public class UnitControl : MonoBehaviour
     
     public void ClickRMB(Vector3 coordinates, GameObject gameObject)
     {
+        Debug.Log($"UnitControl: ПКМ команда движения к {coordinates}");
+        
         foreach (var unit in _selectedUnits)
         {
+            // Отменяем текущие команды добычи
+            Unit unitComponent = unit.GetComponent<Unit>();
+            if(unitComponent != null)
+            {
+                unitComponent.ClearCommandList();
+                Debug.Log($"🛑 Команды отменены для {unit.name}, идет к {coordinates}");
+            }
+            
             unit.GoTo(coordinates);
         }
-        Debug.Log("Нажато rmb: ");
+        Debug.Log($"ПКМ: {_selectedUnits.Count} юнитов получили команду движения");
     }
 }

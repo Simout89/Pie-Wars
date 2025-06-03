@@ -69,50 +69,38 @@ public class MovmentRoy: IMovmentGroup
         if(this._activeUnits.Count<=0){
             return;
         }
-        //if(this._completedUnits.Count<=0){
-            //return;
-        //}
 
         for(int ind=0;ind<this._activeUnits.Count;ind++){
-
             activeEnt = this._activeUnits[ind];
             entId = this._unitsList.IndexOf(activeEnt);
 
-            //Debug.Log(Vector3.Distance(activeEnt.transform.position,this._target));
-            
-            //if(activeEnt.transform.position == this._target){
-            if((Vector3.Distance(activeEnt.transform.position,this._target))<=1.0f){
-                
+            // СТАРЫЙ КОД с точным сравнением позиций:
+            // if(activeEnt.transform.position == this._target){
+        
+            // ИСПРАВЛЕННЫЙ КОД с проверкой расстояния:
+            float distanceToTarget = Vector3.Distance(activeEnt.transform.position, this._target);
+        
+            if(distanceToTarget <= 1.0f){
                 activeEnt.RemoveCommand(this._commandList[entId]);
                 this._completedUnits.Add(activeEnt);
                 this._activeUnits.Remove(activeEnt);
                 continue;
-                
             }
 
-            if(this._completedUnits.Count !=0){
-                for(int i = 0; i<this._completedUnits.Count;i++){
-
-                    if((Vector3.Distance(activeEnt.transform.position,this._completedUnits[i].transform.position))<=6.0f){
-
+            if(this._completedUnits.Count != 0){
+                for(int i = 0; i < this._completedUnits.Count; i++){
+                    float distanceToCompleted = Vector3.Distance(activeEnt.transform.position, this._completedUnits[i].transform.position);
+                
+                    if(distanceToCompleted <= 6.0f){
                         activeEnt.RemoveCommand(this._commandList[entId]);
                         this._completedUnits.Add(activeEnt);
                         this._activeUnits.Remove(activeEnt);
                         break;
-                        
                     }
-
-
                 }
             }
-
-
-
         }
-
-
-
-    }
+    } 
 
 
     
