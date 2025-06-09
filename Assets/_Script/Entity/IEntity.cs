@@ -13,6 +13,7 @@ public interface IEntity: ISubjecEntityClick, IPointerClickHandler
     EntityCfg _characteristics{ get;}
 
     public List<SkillBase> skills { get; set; }
+    public string Name { get; set; }
     abstract bool ExecuteCommand(ICommand command);
     abstract void AddCommand(ICommand command);
     abstract void RemoveCommand(ICommand command);

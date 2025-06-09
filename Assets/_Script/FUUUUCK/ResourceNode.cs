@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
+using UnityEngine.UI;
 
 public class ResourceNode : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class ResourceNode : MonoBehaviour
     [SerializeField] private int totalResources = 1000;
     [SerializeField] private int resourcesPerHarvest = 10;
     [SerializeField] private float harvestCooldown = 2f;
+    [SerializeField] private Slider slider;
+    [SerializeField] private TMP_Text text;
     
     private int currentResources;
     private bool canHarvest = true;
@@ -35,6 +39,14 @@ public class ResourceNode : MonoBehaviour
         {
             originalColor = nodeRenderer.material.color;
         }
+        
+        if (slider != null)
+        {
+            slider.maxValue = totalResources;
+            slider.value = currentResources;
+        }
+        if (text != null)
+            text.text = resourceType.ToString();
     }
 
     public int Harvest()
@@ -63,6 +75,9 @@ public class ResourceNode : MonoBehaviour
         {
             OnResourceDepleted();
         }
+        
+        if (slider != null)
+            slider.value = currentResources;
         
         return harvestedAmount;
     }

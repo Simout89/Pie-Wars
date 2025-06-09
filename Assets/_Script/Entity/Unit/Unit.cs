@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 
 //using System.Numerics;
 using Unity.VisualScripting;
@@ -10,9 +11,12 @@ using Zenject;
 
 //базовый класс для юнита, который ходит по земле//base class for a unit that walks on the ground
 [Serializable]
-public abstract class Unit:MonoBehaviour, IEntity, IDamageable
+public abstract class Unit: MonoBehaviour, IEntity, IDamageable
 {
-    
+    [SerializeField] private UnityEngine.UI.Slider _healthSlider;
+    [SerializeField] private TMP_Text _textName;
+    [SerializeField] private Transform canvas;
+
 
     [Inject] protected SelectedEntitysController _selectedEntitysController;
 
@@ -41,6 +45,11 @@ public abstract class Unit:MonoBehaviour, IEntity, IDamageable
             Debug.Log($"{gameObject.name} умер");
             Destroy(gameObject);
         }
+        
+        if (_healthSlider != null)
+        {
+            _healthSlider.value = CurrentHealth;
+        }
     }
 
     public event Action OnDeath;
@@ -58,8 +67,15 @@ public abstract class Unit:MonoBehaviour, IEntity, IDamageable
         set => _skills = value;
     }
 
-    [SerializeField] private List<SkillBase> _skills;
+    public string Name
+    {
+        get => _name;
+        set => _name = value;
+    }
+    
+    [SerializeField] private string _name;
 
+    [SerializeField] private List<SkillBase> _skills;
     public void OnPointerClick(UnityEngine.EventSystems.PointerEventData eventData){
 
         //для обработки клика на юнит//to handle clicks on a unit
@@ -158,9 +174,24 @@ public abstract class Unit:MonoBehaviour, IEntity, IDamageable
         this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
 
         CurrentHealth = MaximumHealth;
+        if (_healthSlider != null)
+        {
+            _healthSlider.maxValue = MaximumHealth;
+            _healthSlider.value = CurrentHealth;
+        }
+
+        if (_textName != null)
+        {
+            _textName.text = Name;
+        }
     }
 
     public void Update(){
+        if (canvas != null)
+        {
+            canvas.transform.LookAt(Camera.main.transform);
+        }
+        
         if(this._commandList.Count!=0){
            
            

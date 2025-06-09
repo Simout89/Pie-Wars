@@ -33,7 +33,7 @@ public class trasheynik : Unit
             100, // HP
             10,  // AR
             50,  // EN
-            5,   // SP - скорость
+            20,   // SP - скорость
             20,  // VR
             15,  // AT
             1,   // ATS
